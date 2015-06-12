@@ -1,0 +1,425 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D0931E401B2A8BAC00EFC01A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0931E3F1B2A8BAC00EFC01A /* main.m */; };
+		D0931E431B2A8BAC00EFC01A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D0931E421B2A8BAC00EFC01A /* AppDelegate.m */; };
+		D0931E461B2A8BAC00EFC01A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0931E451B2A8BAC00EFC01A /* ViewController.m */; };
+		D0931E491B2A8BAC00EFC01A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0931E471B2A8BAC00EFC01A /* Main.storyboard */; };
+		D0931E4B1B2A8BAC00EFC01A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0931E4A1B2A8BAC00EFC01A /* Images.xcassets */; };
+		D0931E5A1B2A8BAC00EFC01A /* CatTableDetailViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0931E591B2A8BAC00EFC01A /* CatTableDetailViewControllerTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D0931E541B2A8BAC00EFC01A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0931E321B2A8BAC00EFC01A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D0931E391B2A8BAC00EFC01A;
+			remoteInfo = CatTableDetailViewController;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D0931E3A1B2A8BAC00EFC01A /* CatTableDetailViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatTableDetailViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0931E3E1B2A8BAC00EFC01A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0931E3F1B2A8BAC00EFC01A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D0931E411B2A8BAC00EFC01A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D0931E421B2A8BAC00EFC01A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D0931E441B2A8BAC00EFC01A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		D0931E451B2A8BAC00EFC01A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		D0931E481B2A8BAC00EFC01A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D0931E4A1B2A8BAC00EFC01A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D0931E531B2A8BAC00EFC01A /* CatTableDetailViewControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatTableDetailViewControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0931E581B2A8BAC00EFC01A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0931E591B2A8BAC00EFC01A /* CatTableDetailViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CatTableDetailViewControllerTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D0931E371B2A8BAC00EFC01A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0931E501B2A8BAC00EFC01A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D0931E311B2A8BAC00EFC01A = {
+			isa = PBXGroup;
+			children = (
+				D0931E3C1B2A8BAC00EFC01A /* CatTableDetailViewController */,
+				D0931E561B2A8BAC00EFC01A /* CatTableDetailViewControllerTests */,
+				D0931E3B1B2A8BAC00EFC01A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D0931E3B1B2A8BAC00EFC01A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D0931E3A1B2A8BAC00EFC01A /* CatTableDetailViewController.app */,
+				D0931E531B2A8BAC00EFC01A /* CatTableDetailViewControllerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D0931E3C1B2A8BAC00EFC01A /* CatTableDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D0931E411B2A8BAC00EFC01A /* AppDelegate.h */,
+				D0931E421B2A8BAC00EFC01A /* AppDelegate.m */,
+				D0931E441B2A8BAC00EFC01A /* ViewController.h */,
+				D0931E451B2A8BAC00EFC01A /* ViewController.m */,
+				D0931E471B2A8BAC00EFC01A /* Main.storyboard */,
+				D0931E4A1B2A8BAC00EFC01A /* Images.xcassets */,
+				D0931E3D1B2A8BAC00EFC01A /* Supporting Files */,
+			);
+			path = CatTableDetailViewController;
+			sourceTree = "<group>";
+		};
+		D0931E3D1B2A8BAC00EFC01A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D0931E3E1B2A8BAC00EFC01A /* Info.plist */,
+				D0931E3F1B2A8BAC00EFC01A /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D0931E561B2A8BAC00EFC01A /* CatTableDetailViewControllerTests */ = {
+			isa = PBXGroup;
+			children = (
+				D0931E591B2A8BAC00EFC01A /* CatTableDetailViewControllerTests.m */,
+				D0931E571B2A8BAC00EFC01A /* Supporting Files */,
+			);
+			path = CatTableDetailViewControllerTests;
+			sourceTree = "<group>";
+		};
+		D0931E571B2A8BAC00EFC01A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D0931E581B2A8BAC00EFC01A /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D0931E391B2A8BAC00EFC01A /* CatTableDetailViewController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0931E5D1B2A8BAC00EFC01A /* Build configuration list for PBXNativeTarget "CatTableDetailViewController" */;
+			buildPhases = (
+				D0931E361B2A8BAC00EFC01A /* Sources */,
+				D0931E371B2A8BAC00EFC01A /* Frameworks */,
+				D0931E381B2A8BAC00EFC01A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CatTableDetailViewController;
+			productName = CatTableDetailViewController;
+			productReference = D0931E3A1B2A8BAC00EFC01A /* CatTableDetailViewController.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D0931E521B2A8BAC00EFC01A /* CatTableDetailViewControllerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0931E601B2A8BAC00EFC01A /* Build configuration list for PBXNativeTarget "CatTableDetailViewControllerTests" */;
+			buildPhases = (
+				D0931E4F1B2A8BAC00EFC01A /* Sources */,
+				D0931E501B2A8BAC00EFC01A /* Frameworks */,
+				D0931E511B2A8BAC00EFC01A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D0931E551B2A8BAC00EFC01A /* PBXTargetDependency */,
+			);
+			name = CatTableDetailViewControllerTests;
+			productName = CatTableDetailViewControllerTests;
+			productReference = D0931E531B2A8BAC00EFC01A /* CatTableDetailViewControllerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D0931E321B2A8BAC00EFC01A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "K-cat";
+				TargetAttributes = {
+					D0931E391B2A8BAC00EFC01A = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					D0931E521B2A8BAC00EFC01A = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = D0931E391B2A8BAC00EFC01A;
+					};
+				};
+			};
+			buildConfigurationList = D0931E351B2A8BAC00EFC01A /* Build configuration list for PBXProject "CatTableDetailViewController" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D0931E311B2A8BAC00EFC01A;
+			productRefGroup = D0931E3B1B2A8BAC00EFC01A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D0931E391B2A8BAC00EFC01A /* CatTableDetailViewController */,
+				D0931E521B2A8BAC00EFC01A /* CatTableDetailViewControllerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D0931E381B2A8BAC00EFC01A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0931E491B2A8BAC00EFC01A /* Main.storyboard in Resources */,
+				D0931E4B1B2A8BAC00EFC01A /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0931E511B2A8BAC00EFC01A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D0931E361B2A8BAC00EFC01A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0931E461B2A8BAC00EFC01A /* ViewController.m in Sources */,
+				D0931E431B2A8BAC00EFC01A /* AppDelegate.m in Sources */,
+				D0931E401B2A8BAC00EFC01A /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0931E4F1B2A8BAC00EFC01A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0931E5A1B2A8BAC00EFC01A /* CatTableDetailViewControllerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D0931E551B2A8BAC00EFC01A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D0931E391B2A8BAC00EFC01A /* CatTableDetailViewController */;
+			targetProxy = D0931E541B2A8BAC00EFC01A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D0931E471B2A8BAC00EFC01A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0931E481B2A8BAC00EFC01A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D0931E5B1B2A8BAC00EFC01A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D0931E5C1B2A8BAC00EFC01A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D0931E5E1B2A8BAC00EFC01A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = CatTableDetailViewController/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D0931E5F1B2A8BAC00EFC01A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = CatTableDetailViewController/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D0931E611B2A8BAC00EFC01A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CatTableDetailViewControllerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CatTableDetailViewController.app/CatTableDetailViewController";
+			};
+			name = Debug;
+		};
+		D0931E621B2A8BAC00EFC01A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CatTableDetailViewControllerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CatTableDetailViewController.app/CatTableDetailViewController";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D0931E351B2A8BAC00EFC01A /* Build configuration list for PBXProject "CatTableDetailViewController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0931E5B1B2A8BAC00EFC01A /* Debug */,
+				D0931E5C1B2A8BAC00EFC01A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0931E5D1B2A8BAC00EFC01A /* Build configuration list for PBXNativeTarget "CatTableDetailViewController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0931E5E1B2A8BAC00EFC01A /* Debug */,
+				D0931E5F1B2A8BAC00EFC01A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D0931E601B2A8BAC00EFC01A /* Build configuration list for PBXNativeTarget "CatTableDetailViewControllerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0931E611B2A8BAC00EFC01A /* Debug */,
+				D0931E621B2A8BAC00EFC01A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D0931E321B2A8BAC00EFC01A /* Project object */;
+}
