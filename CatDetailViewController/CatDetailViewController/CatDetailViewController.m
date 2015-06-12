@@ -10,18 +10,22 @@
 
 #define USAGE_GAP 8
 
+
 typedef NS_ENUM(NSInteger, CatDetailViewControllerMoal) {
     CatDetailViewControllerMoalSingleSection,
-    CatDetailViewControllerMoalTextFieldEnter
+    CatDetailViewControllerMoalTextFieldEnter,
+    CatDetailViewControllerMoalDatePicker
 };
 
 static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
 
 @interface CatDetailViewController ()<UITableViewDelegate, UITableViewDataSource>{
     UITableView *sectionsTable;
+    UITextField *enterTextField;
+    UIDatePicker *datePicker;
     NSMutableArray *sectionsArray;
     NSIndexPath *checkmarkIndexPath;
-    UITextField *enterTextField;
+    NSString *datePickerFormatString;
 }
 
 @property (nonatomic) CatDetailViewControllerMoal modal;
@@ -78,8 +82,6 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
         }
         
         [self initBaseLayout];
-        [self initSaveBarBtnWithAction:@selector(saveBarBtnAction)];
-        
         self.saveHandle=saveHandle;
     }
     return self;
@@ -115,25 +117,56 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
         [self.view addSubview:enterTextField];
         
         [self initBaseLayout];
-        [self initSaveBarBtnWithAction:@selector(saveBarBtnAction)];
-        
         self.saveHandle=saveHandle;
     }
     return self;
 }
 
-//-(instancetype)initDatePickerViewWithTitle:(NSString *)title
-//                     datePickerDefaultDate:(NSDate *)datePickerDefaultDate
-//                            datePickerMode:(UIDatePickerMode)datePickerMode
-//                                saveHandle:(void (^)(NSString *))saveHandle{
-//    
-//}
+/**
+ *  Return a new detailViewController base on datepicker modal
+ *
+ *  @param title                 ViewController title
+ *  @param datePickerDefaultDate DatePicker default date
+ *  @param dateFormatString      Format date string
+ *  @param datePickerMode        DatePicker mode
+ *  @param saveHandle            Save bar item action handle
+ *
+ *  @return New initialize detailviewcontroller
+ */
+-(instancetype)initDatePickerViewWithTitle:(NSString *)title
+                     datePickerDefaultDate:(NSDate *)datePickerDefaultDate
+                          dateFormatString:(NSString *)dateFormatString
+                            datePickerMode:(UIDatePickerMode)datePickerMode
+                                saveHandle:(void (^)(NSString *))saveHandle{
+    self=[super init];
+    if (self) {
+        [self setTitle:title];
+        
+        self.modal=CatDetailViewControllerMoalDatePicker;
+        
+        datePicker=[[UIDatePicker alloc] init];
+        if (datePickerDefaultDate==nil) {
+            [datePicker setDate:[NSDate date] animated:YES];
+        }else{
+            [datePicker setDate:datePickerDefaultDate animated:YES];
+        }
+        [datePicker setDatePickerMode:datePickerMode];
+        datePickerFormatString=dateFormatString;
+        [datePicker setCenter:self.view.center];
+        [self.view addSubview:datePicker];
+        
+        [self initBaseLayout];
+        self.saveHandle=saveHandle;
+    }
+    return self;
+}
 
 /**
  *  Init view base layout
  */
 -(void)initBaseLayout{
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self initSaveBarBtnWithAction:@selector(saveBarBtnAction)];
 }
 
 /**
@@ -158,6 +191,12 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
                 break;
             case CatDetailViewControllerMoalTextFieldEnter:{
                 self.saveHandle(enterTextField.text);
+            }
+                break;
+            case CatDetailViewControllerMoalDatePicker:{
+                NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:datePickerFormatString];
+                self.saveHandle([dateFormatter stringFromDate:datePicker.date]);
             }
                 break;
             default:

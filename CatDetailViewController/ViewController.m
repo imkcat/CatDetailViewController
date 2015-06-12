@@ -66,6 +66,15 @@
                     }];
                     [self.navigationController pushViewController:detailView animated:YES];
                 }
+                    break;
+                case 2:{
+                    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
+                    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                    CatDetailViewController *detailView=[[CatDetailViewController alloc] initDatePickerViewWithTitle:@"Select Date" datePickerDefaultDate:[dateFormatter dateFromString:cell.detailTextLabel.text] dateFormatString:@"yyyy-MM-dd" datePickerMode:UIDatePickerModeDate saveHandle:^(NSString *saveResult) {
+                        [cell.detailTextLabel setText:saveResult];
+                    }];
+                    [self.navigationController pushViewController:detailView animated:YES];
+                }
                 default:
                     break;
             }
@@ -77,7 +86,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    return 3;
 }
 
 @end

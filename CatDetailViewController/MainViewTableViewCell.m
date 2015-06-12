@@ -29,6 +29,9 @@
                 case 1:
                     [self.textLabel setText:@"TextField Enter"];
                     break;
+                case 2:
+                    [self.textLabel setText:@"DatePicker"];
+                    break;
                 default:
                     break;
             }
