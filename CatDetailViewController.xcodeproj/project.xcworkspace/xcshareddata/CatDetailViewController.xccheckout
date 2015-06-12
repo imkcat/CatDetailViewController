@@ -14,11 +14,11 @@
 		<string>https://github.com/K-cat/CatTableDetailViewController.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>CatDetailViewController/CatDetailViewController.xcodeproj</string>
+	<string>CatDetailViewController.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>F34360CC2BF07CA85B8436D804804221D2E69D2C</key>
-		<string>../../..</string>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/K-cat/CatTableDetailViewController.git</string>

@@ -8,6 +8,8 @@
 
 #import "CatDetailViewController.h"
 
+#define USAGE_GAP 8
+
 typedef NS_ENUM(NSInteger, CatDetailViewControllerMoal) {
     CatDetailViewControllerMoalSingleSection,
     CatDetailViewControllerMoalTextFieldEnter
@@ -119,6 +121,13 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
     }
     return self;
 }
+
+//-(instancetype)initDatePickerViewWithTitle:(NSString *)title
+//                     datePickerDefaultDate:(NSDate *)datePickerDefaultDate
+//                            datePickerMode:(UIDatePickerMode)datePickerMode
+//                                saveHandle:(void (^)(NSString *))saveHandle{
+//    
+//}
 
 /**
  *  Init view base layout

@@ -21,4 +21,9 @@
                          textFieldKeyboardType:(UIKeyboardType)textFieldKeyboardType
                                     saveHandle:(void(^)(NSString *saveResult))saveHandle;
 
+//-(instancetype)initDatePickerViewWithTitle:(NSString *)title
+//                     datePickerDefaultDate:(NSDate *)datePickerDefaultDate
+//                            datePickerMode:(UIDatePickerMode)datePickerMode
+//                                saveHandle:(void(^)(NSString *saveResult))saveHandle;
+
 @end
