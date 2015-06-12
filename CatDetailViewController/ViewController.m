@@ -54,14 +54,21 @@
         case 0:{
             switch (indexPath.row) {
                 case 0:{
-                    CatDetailViewController *detailView=[[CatDetailViewController alloc] initSingleSectionViewWithTitle:@"Select Color" sections:@[@"Red",@"Blue"] defaultSectionText:cell.detailTextLabel.text saveHandle:^(NSString *saveResult) {
+                    CatDetailViewController *detailView=[[CatDetailViewController alloc] initSingleSectionViewWithTitle:@"Select Color"
+                                                                                                               sections:@[@"Red",@"Blue"]
+                                                                                                     defaultSectionText:cell.detailTextLabel.text
+                                                                                                             saveHandle:^(NSString *saveResult) {
                         [cell.detailTextLabel setText:saveResult];
                     }];
                     [self.navigationController pushViewController:detailView animated:YES];
                 }
                     break;
                 case 1:{
-                    CatDetailViewController *detailView=[[CatDetailViewController alloc] initTextFieldEnterViewWithTitle:@"Enter Something" textFieldDefaultText:cell.detailTextLabel.text textFieldPlaceholderText:nil textFieldKeyboardType:UIKeyboardTypeDefault saveHandle:^(NSString *saveResult) {
+                    CatDetailViewController *detailView=[[CatDetailViewController alloc] initTextFieldEnterViewWithTitle:@"Enter Something"
+                                                                                                    textFieldDefaultText:cell.detailTextLabel.text
+                                                                                                textFieldPlaceholderText:nil
+                                                                                                   textFieldKeyboardType:UIKeyboardTypeDefault
+                                                                                                              saveHandle:^(NSString *saveResult) {
                         [cell.detailTextLabel setText:saveResult];
                     }];
                     [self.navigationController pushViewController:detailView animated:YES];
@@ -70,7 +77,11 @@
                 case 2:{
                     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
                     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-                    CatDetailViewController *detailView=[[CatDetailViewController alloc] initDatePickerViewWithTitle:@"Select Date" datePickerDefaultDate:[dateFormatter dateFromString:cell.detailTextLabel.text] dateFormatString:@"yyyy-MM-dd" datePickerMode:UIDatePickerModeDate saveHandle:^(NSString *saveResult) {
+                    CatDetailViewController *detailView=[[CatDetailViewController alloc] initDatePickerViewWithTitle:@"Select Date"
+                                                                                               datePickerDefaultDate:[dateFormatter dateFromString:cell.detailTextLabel.text]
+                                                                                                    dateFormatString:@"yyyy-MM-dd"
+                                                                                                      datePickerMode:UIDatePickerModeDate
+                                                                                                          saveHandle:^(NSString *saveResult) {
                         [cell.detailTextLabel setText:saveResult];
                     }];
                     [self.navigationController pushViewController:detailView animated:YES];
