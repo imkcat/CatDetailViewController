@@ -2,8 +2,7 @@ language: objective-c
 before_install:
 - brew update
 - brew reinstall xctool
-- gem update cocoapods
-xcode_workspace: CatDetailViewController.xcworkspace
+xcode_project: CatDetailViewController.xcodeproj
 xcode_scheme: CatDetailViewController
 xcode_sdk:
 - iphonesimulator
