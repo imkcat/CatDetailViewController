@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.license      = "MIT"
   s.author             = { "K-cat" => "kcatismyname@icloud.com" }
   s.ios.deployment_target = "5.0"
-  s.source       = { :git => "https://github.com/K-cat/CatDetailViewController.git", :tag => "v#{s.version}" }
+  s.source       = { :git => "https://github.com/K-cat/CatDetailViewController.git", :tag => "#{s.version}" }
   s.source_files  = "CatDetailViewController/CatDetailViewController/*.{h,m}"
   s.frameworks  = "UIKit"
   s.requires_arc = true
