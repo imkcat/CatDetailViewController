@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "CatDetailViewController"
-  s.version      = "0.0.3"
+  s.version      = "0.0.4"
   s.summary      = "A way to keep your viewcontroller code compact."
   s.homepage     = "https://github.com/K-cat/CatDetailViewController"
   s.license      = "MIT"
