@@ -15,6 +15,7 @@
 		D0931E931B2A8EF500EFC01A /* CatDetailViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0931E921B2A8EF500EFC01A /* CatDetailViewControllerTests.m */; };
 		D0931EA21B2A8F8100EFC01A /* CatDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0931EA11B2A8F8100EFC01A /* CatDetailViewController.m */; };
 		D0931EA51B2A905000EFC01A /* MainViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0931EA41B2A905000EFC01A /* MainViewTableViewCell.m */; };
+		D0FCE0481B2ABC6E00D5FE51 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0FCE0471B2ABC6E00D5FE51 /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		D0931EA11B2A8F8100EFC01A /* CatDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CatDetailViewController.m; path = CatDetailViewController/CatDetailViewController.m; sourceTree = "<group>"; };
 		D0931EA31B2A905000EFC01A /* MainViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewTableViewCell.h; sourceTree = "<group>"; };
 		D0931EA41B2A905000EFC01A /* MainViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewTableViewCell.m; sourceTree = "<group>"; };
+		D0FCE0471B2ABC6E00D5FE51 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0FCE0481B2ABC6E00D5FE51 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +70,7 @@
 		D0931E6A1B2A8EF500EFC01A = {
 			isa = PBXGroup;
 			children = (
+				D0FCE0421B2ABC0200D5FE51 /* Frameworks */,
 				D0931E751B2A8EF500EFC01A /* CatDetailViewController */,
 				D0931E8F1B2A8EF500EFC01A /* CatDetailViewControllerTests */,
 				D0931E741B2A8EF500EFC01A /* Products */,
@@ -132,6 +136,14 @@
 				D0931EA11B2A8F8100EFC01A /* CatDetailViewController.m */,
 			);
 			name = CatDetailViewController;
+			sourceTree = "<group>";
+		};
+		D0FCE0421B2ABC0200D5FE51 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D0FCE0471B2ABC6E00D5FE51 /* UIKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -430,6 +442,7 @@
 				D0931E981B2A8EF500EFC01A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D0931E991B2A8EF500EFC01A /* Build configuration list for PBXNativeTarget "CatDetailViewControllerTests" */ = {
 			isa = XCConfigurationList;
@@ -438,6 +451,7 @@
 				D0931E9B1B2A8EF500EFC01A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
