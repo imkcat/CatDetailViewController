@@ -2,6 +2,10 @@
 
 [![Build Status](https://travis-ci.org/K-cat/CatDetailViewController.svg)](https://travis-ci.org/K-cat)
 
+# Introduction
+
+CatDetailViewController is a quicker way to create a viewcontroller for information enter,CatDetailViewController can make your code compectly
+
 # Installation
 
 CatDetailViewController is available on [CocoaPods](http://cocoapods.org).Just add the following to your project Podfile:
