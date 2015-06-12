@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D0931E391B2A8BAC00EFC01A"
-               BuildableName = "CatTableDetailViewController.app"
-               BlueprintName = "CatTableDetailViewController"
-               ReferencedContainer = "container:CatTableDetailViewController.xcodeproj">
+               BlueprintIdentifier = "D0931E721B2A8EF500EFC01A"
+               BuildableName = "CatDetailViewController.app"
+               BlueprintName = "CatDetailViewController"
+               ReferencedContainer = "container:CatDetailViewController.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -28,10 +28,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D0931E521B2A8BAC00EFC01A"
-               BuildableName = "CatTableDetailViewControllerTests.xctest"
-               BlueprintName = "CatTableDetailViewControllerTests"
-               ReferencedContainer = "container:CatTableDetailViewController.xcodeproj">
+               BlueprintIdentifier = "D0931E8B1B2A8EF500EFC01A"
+               BuildableName = "CatDetailViewControllerTests.xctest"
+               BlueprintName = "CatDetailViewControllerTests"
+               ReferencedContainer = "container:CatDetailViewController.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,20 +46,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D0931E521B2A8BAC00EFC01A"
-               BuildableName = "CatTableDetailViewControllerTests.xctest"
-               BlueprintName = "CatTableDetailViewControllerTests"
-               ReferencedContainer = "container:CatTableDetailViewController.xcodeproj">
+               BlueprintIdentifier = "D0931E8B1B2A8EF500EFC01A"
+               BuildableName = "CatDetailViewControllerTests.xctest"
+               BlueprintName = "CatDetailViewControllerTests"
+               ReferencedContainer = "container:CatDetailViewController.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D0931E391B2A8BAC00EFC01A"
-            BuildableName = "CatTableDetailViewController.app"
-            BlueprintName = "CatTableDetailViewController"
-            ReferencedContainer = "container:CatTableDetailViewController.xcodeproj">
+            BlueprintIdentifier = "D0931E721B2A8EF500EFC01A"
+            BuildableName = "CatDetailViewController.app"
+            BlueprintName = "CatDetailViewController"
+            ReferencedContainer = "container:CatDetailViewController.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -76,10 +76,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D0931E391B2A8BAC00EFC01A"
-            BuildableName = "CatTableDetailViewController.app"
-            BlueprintName = "CatTableDetailViewController"
-            ReferencedContainer = "container:CatTableDetailViewController.xcodeproj">
+            BlueprintIdentifier = "D0931E721B2A8EF500EFC01A"
+            BuildableName = "CatDetailViewController.app"
+            BlueprintName = "CatDetailViewController"
+            ReferencedContainer = "container:CatDetailViewController.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,10 +95,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D0931E391B2A8BAC00EFC01A"
-            BuildableName = "CatTableDetailViewController.app"
-            BlueprintName = "CatTableDetailViewController"
-            ReferencedContainer = "container:CatTableDetailViewController.xcodeproj">
+            BlueprintIdentifier = "D0931E721B2A8EF500EFC01A"
+            BuildableName = "CatDetailViewController.app"
+            BlueprintName = "CatDetailViewController"
+            ReferencedContainer = "container:CatDetailViewController.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

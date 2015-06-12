@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>CatTableDetailViewController.xcscheme</key>
+		<key>CatDetailViewController.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,12 +12,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>D0931E391B2A8BAC00EFC01A</key>
+		<key>D0931E721B2A8EF500EFC01A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D0931E521B2A8BAC00EFC01A</key>
+		<key>D0931E8B1B2A8EF500EFC01A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

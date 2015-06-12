@@ -5,16 +5,16 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>58E2BEB4-D581-442C-8049-43BDA384123A</string>
+	<string>03C39C7F-398C-4898-B0F3-D49D32E2F426</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>CatDetailViewController</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>F34360CC2BF07CA85B8436D804804221D2E69D2C</key>
 		<string>https://github.com/K-cat/CatTableDetailViewController.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>CatTableDetailViewController/CatTableDetailViewController.xcodeproj/project.xcworkspace</string>
+	<string>CatDetailViewController/CatDetailViewController.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>F34360CC2BF07CA85B8436D804804221D2E69D2C</key>
