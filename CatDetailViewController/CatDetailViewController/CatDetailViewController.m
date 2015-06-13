@@ -10,26 +10,67 @@
 
 #define USAGE_GAP 8
 
-
-typedef NS_ENUM(NSInteger, CatDetailViewControllerMoal) {
+/**
+ *  Modal to judge what modal is the viewcontroller
+ */
+typedef NS_ENUM(NSInteger, CatDetailViewControllerMoal){
+    /**
+     *  Viewcontroller with single section
+     */
     CatDetailViewControllerMoalSingleSection,
+    /**
+     *  Viewcontroller with textfield
+     */
     CatDetailViewControllerMoalTextFieldEnter,
+    /**
+     *  Viewcontroller with datepicker
+     */
     CatDetailViewControllerMoalDatePicker
+};
+
+/**
+ *  Modal to judge what alertview it is
+ */
+typedef NS_ENUM(NSInteger, CatDetailViewControllerAlertViewModal){
+    /**
+     *  Empty information alertview
+     */
+    CatDetailViewControllerAlertViewModalEmptyResult,
+    /**
+     *  Confrim information alertview
+     */
+    CatDetailViewControllerAlertViewModalConfrim,
+    /**
+     *  Section empty alertview
+     */
+    CatDetailViewControllerAlertViewModalSectionEmpty
 };
 
 static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
 
-@interface CatDetailViewController ()<UITableViewDelegate, UITableViewDataSource>{
+@interface CatDetailViewController ()<UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, UINavigationControllerDelegate>{
     UITableView *sectionsTable;
     UITextField *enterTextField;
     UIDatePicker *datePicker;
+    UIAlertView *detailControllerAlertView;
     NSMutableArray *sectionsArray;
     NSIndexPath *checkmarkIndexPath;
     NSString *datePickerFormatString;
 }
 
+/**
+ *  The viewcontroller modal
+ */
 @property (nonatomic) CatDetailViewControllerMoal modal;
+
+/**
+ *  A block handler perform save action
+ */
 @property (nonatomic ,copy) void (^saveHandle)(NSString *saveResult);
+
+/**
+ *  The result string
+ */
 @property (nonatomic ,copy) NSString *saveResult;
 
 @end
@@ -48,7 +89,6 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
 
 
 #pragma mark - Init method
-
 -(instancetype)initSingleSectionViewWithTitle:(NSString *)title
                                      sections:(NSArray *)sections
                             defaultSectionText:(NSString *)defaultSectionText
@@ -61,19 +101,25 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
         sectionsTable=[[UITableView alloc] initWithFrame:self.view.bounds];
         [self.view addSubview:sectionsTable];
         
-        sectionsArray=[[NSMutableArray alloc] initWithArray:sections];
-        [sectionsTable registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
-        sectionsTable.delegate=self;
-        sectionsTable.dataSource=self;
-        
-        if ([sections containsObject:defaultSectionText]) {
-            checkmarkIndexPath=[NSIndexPath indexPathForRow:[sections indexOfObject:defaultSectionText] inSection:0];
+        if (sections.count==0) {
+            detailControllerAlertView=[[UIAlertView alloc] initWithTitle:@"CatDetailViewController" message:@"Please make sure array is not empty" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [detailControllerAlertView setTag:CatDetailViewControllerAlertViewModalSectionEmpty];
+            [detailControllerAlertView show];
         }else{
-            checkmarkIndexPath=nil;
+            sectionsArray=[[NSMutableArray alloc] initWithArray:sections];
+            [sectionsTable registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
+            sectionsTable.delegate=self;
+            sectionsTable.dataSource=self;
+            
+            if ([sections containsObject:defaultSectionText]) {
+                checkmarkIndexPath=[NSIndexPath indexPathForRow:[sections indexOfObject:defaultSectionText] inSection:0];
+            }else{
+                checkmarkIndexPath=nil;
+            }
+            
+            [self initBaseLayout];
+            self.saveHandle=saveHandle;
         }
-        
-        [self initBaseLayout];
-        self.saveHandle=saveHandle;
     }
     return self;
 }
@@ -136,7 +182,11 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
  */
 -(void)initBaseLayout{
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    [self initSaveBarBtnWithAction:@selector(saveBarBtnAction)];
+    if (self.enableConfirmAlertView) {
+        [self initSaveBarBtnWithAction:@selector(showConfirmAlertView)];
+    } else {
+        [self initSaveBarBtnWithAction:@selector(saveBarBtnAction)];
+    }
 }
 
 /**
@@ -149,31 +199,80 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
     [self.navigationItem setRightBarButtonItem:saveBarBtn animated:YES];
 }
 
+#pragma mark - Action Method
+/**
+ *  Show confirm information alert view
+ */
+-(void)showConfirmAlertView{
+    if (!self.saveConfirmAlertViewTitle) {
+        self.saveConfirmAlertViewTitle=@"Notice";
+    }
+    if (!self.saveConfirmAlertViewMessage) {
+        self.saveConfirmAlertViewMessage=@"Do you confirm this information";
+    }
+    
+    detailControllerAlertView=[[UIAlertView alloc] initWithTitle:self.saveConfirmAlertViewTitle message:self.saveConfirmAlertViewMessage delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+    [detailControllerAlertView setTag:CatDetailViewControllerAlertViewModalConfrim];
+    [detailControllerAlertView show];
+}
+
+/**
+ *  Show empty information alert view
+ */
+-(void)showEmptyAlertView{
+    if (!self.emptyResultAlertViewTitle) {
+        self.emptyResultAlertViewTitle=@"Notice";
+    }
+    if (!self.emptyResultAlertViewMessage) {
+        self.emptyResultAlertViewMessage=@"You must confirm information is available";
+    }
+    detailControllerAlertView=[[UIAlertView alloc] initWithTitle:self.emptyResultAlertViewTitle message:self.emptyResultAlertViewMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [detailControllerAlertView setTag:CatDetailViewControllerAlertViewModalEmptyResult];
+    [detailControllerAlertView show];
+}
+
 /**
  *  Save bar item action
  */
 -(void)saveBarBtnAction{
-    if (self.saveHandle) {
-        switch (self.modal) {
-            case CatDetailViewControllerMoalSingleSection:{
-                self.saveHandle(self.saveResult);
-            }
-                break;
-            case CatDetailViewControllerMoalTextFieldEnter:{
-                self.saveHandle(enterTextField.text);
-            }
-                break;
-            case CatDetailViewControllerMoalDatePicker:{
-                NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
-                [dateFormatter setDateFormat:datePickerFormatString];
-                self.saveHandle([dateFormatter stringFromDate:datePicker.date]);
-            }
-                break;
-            default:
-                break;
+    switch (self.modal) {
+        case CatDetailViewControllerMoalSingleSection:{
         }
+            break;
+        case CatDetailViewControllerMoalTextFieldEnter:{
+            self.saveResult=enterTextField.text;
+        }
+            break;
+        case CatDetailViewControllerMoalDatePicker:{
+            NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:datePickerFormatString];
+            self.saveResult=[dateFormatter stringFromDate:datePicker.date];
+        }
+            break;
+        default:
+            break;
     }
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    if (!self.allowResultEmpty) {
+        if (![self.saveResult isEqualToString:@""]&&self.saveResult!=nil) {
+            self.saveHandle(self.saveResult);
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            [self showEmptyAlertView];
+        }
+    } else {
+        self.saveHandle(self.saveResult);
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+#pragma mark - Properties getter and setter
+-(void)setEnableConfirmAlertView:(BOOL)enableConfirmAlertView{
+    if (enableConfirmAlertView) {
+        [self initSaveBarBtnWithAction:@selector(showConfirmAlertView)];
+    } else {
+        [self initSaveBarBtnWithAction:@selector(saveBarBtnAction)];
+    }
 }
 
 #pragma mark - UITableViewDelegate
@@ -205,6 +304,28 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
     [tableView reloadData];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.saveResult=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+}
+
+#pragma mark - UIAlertViewDelegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    switch (alertView.tag) {
+        case CatDetailViewControllerAlertViewModalSectionEmpty:{
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+            break;
+        case CatDetailViewControllerAlertViewModalEmptyResult:{
+        }
+            break;
+        case CatDetailViewControllerAlertViewModalConfrim:{
+            if (buttonIndex==1) {
+                [self saveBarBtnAction];
+            } else {
+            }
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 /*

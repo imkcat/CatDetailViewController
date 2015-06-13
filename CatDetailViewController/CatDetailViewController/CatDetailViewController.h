@@ -11,6 +11,36 @@
 @interface CatDetailViewController : UIViewController
 
 /**
+ *  A boolean value that the confirm information alertview show(Default is NO)
+ */
+@property(nonatomic) BOOL enableConfirmAlertView;
+
+/**
+ *  A boolean value that the empty information alertview show(Default is NO)
+ */
+@property(nonatomic) BOOL allowResultEmpty;
+
+/**
+ *  The text for save alertview message
+ */
+@property(nonatomic ,copy) NSString *saveConfirmAlertViewMessage;
+
+/**
+ *  The text for save alertview title
+ */
+@property(nonatomic ,copy) NSString *saveConfirmAlertViewTitle;
+
+/**
+ *  The text for empty alertview message
+ */
+@property(nonatomic ,copy) NSString *emptyResultAlertViewMessage;
+
+/**
+ *  The text for empty alertview title
+ */
+@property(nonatomic ,copy) NSString *emptyResultAlertViewTitle;
+
+/**
  *  Return a new detailViewController base on single section modal
  *
  *  @param title      ViewController title
