@@ -9,6 +9,12 @@
 
 CatDetailViewController is a quicker way to create a viewcontroller for information enter,CatDetailViewController can make your code compectly
 
+# ScreenShots
+
+![ScreenShots1](http://kcat.co/wp-content/uploads/2015/06/single-section.gif)
+![ScreenShots2](http://kcat.co/wp-content/uploads/2015/06/textfield.gif)
+![ScreenShots3](http://kcat.co/wp-content/uploads/2015/06/datepicker.gif)
+
 # Installation
 
 CatDetailViewController is available on [CocoaPods](http://cocoapods.org).Just add the following to your project Podfile:
