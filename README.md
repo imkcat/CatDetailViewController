@@ -7,7 +7,7 @@
 
 # Introduction
 
-CatDetailViewController is a quicker way to create a viewcontroller for information enter,CatDetailViewController can make your code compectly
+CatDetailViewController is a quicker way to create a viewcontroller for different type information enter,such as text,date or table!CatDetailViewController can make your code compectly,and replace delegate way!
 
 # ScreenShots
 
@@ -22,6 +22,13 @@ CatDetailViewController is available on [CocoaPods](http://cocoapods.org).Just a
 ```ruby
 pod 'CatDetailViewController'
 ```
+
+# New Properties
+**allowResultEmpty**:A boolean value that the empty information alertview show(Default is NO)
+**emptyResultAlertViewMessage**:The text for empty alertview message
+**enableConfirmAlertView**:A boolean value that the confirm information alertview show(Default is NO)
+**saveConfirmAlertViewMessage**:The text for save alertview message
+**saveConfirmAlertViewTitle**:The text for save alertview title
 
 # Usage
 
