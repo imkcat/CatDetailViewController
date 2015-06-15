@@ -24,11 +24,11 @@ pod 'CatDetailViewController'
 ```
 
 # New Properties
-**allowResultEmpty**:A boolean value that the empty information alertview show(Default is NO)
-**emptyResultAlertViewMessage**:The text for empty alertview message
-**enableConfirmAlertView**:A boolean value that the confirm information alertview show(Default is NO)
-**saveConfirmAlertViewMessage**:The text for save alertview message
-**saveConfirmAlertViewTitle**:The text for save alertview title
+* **allowResultEmpty**:A boolean value that the empty information alertview show(Default is NO)
+* **emptyResultAlertViewMessage**:The text for empty alertview message
+* **enableConfirmAlertView**:A boolean value that the confirm information alertview show(Default is NO)
+* **saveConfirmAlertViewMessage**:The text for save alertview message
+* **saveConfirmAlertViewTitle**:The text for save alertview title
 
 # Usage
 
