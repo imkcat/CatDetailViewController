@@ -25,7 +25,11 @@ typedef NS_ENUM(NSInteger, CatDetailViewControllerMoal){
     /**
      *  Viewcontroller with datepicker
      */
-    CatDetailViewControllerMoalDatePicker
+    CatDetailViewControllerMoalDatePicker,
+    /**
+     *  Viewcontroller with enter alertcontroller
+     */
+    CatDetailViewControllerMoalAlertController
 };
 
 /**
@@ -48,7 +52,7 @@ typedef NS_ENUM(NSInteger, CatDetailViewControllerAlertViewModal){
 
 static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
 
-@interface CatDetailViewController ()<UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, UINavigationControllerDelegate>{
+@interface CatDetailViewController ()<UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, UINavigationControllerDelegate, UITextFieldDelegate>{
     UITableView *sectionsTable;
     UITextField *enterTextField;
     UIDatePicker *datePicker;
@@ -72,6 +76,11 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
  *  The result string
  */
 @property (nonatomic ,copy) NSString *saveResult;
+
+/**
+ *  The alertViewcontoll for enter
+ */
+@property(nonatomic ,retain) UIAlertController *enterAlertView NS_AVAILABLE_IOS(8_0);
 
 @end
 
@@ -177,6 +186,37 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
     return self;
 }
 
+-(instancetype)initEnterAlertViewWithTitle:(NSString *)title
+                                   message:(NSString *)message
+                             textfieldText:(NSString *)textfieldText
+                      textfieldPlaceholder:(NSString *)textfieldPlaceholder
+                         cancelButtonTitle:(NSString *)cancelButtonTitle
+                           saveButtonTitle:(NSString *)savelButtonTitle
+                                saveHandle:(void (^)(NSString *))saveHandle{
+    self=[super init];
+    if (self) {
+        self.modal=CatDetailViewControllerMoalAlertController;
+        
+        self.enterAlertView=[UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+        
+        [self.enterAlertView addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            [textField setPlaceholder:textfieldPlaceholder];
+            [textField setText:textfieldText];
+        }];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertControllerTextFieldTextDidChange:) name:UITextFieldTextDidChangeNotification object:[self.enterAlertView.textFields firstObject]];
+        [self.enterAlertView addAction:[UIAlertAction actionWithTitle:cancelButtonTitle style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+            [self.enterAlertView dismissViewControllerAnimated:YES completion:nil];
+        }]];
+        [self.enterAlertView addAction:[UIAlertAction actionWithTitle:savelButtonTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self saveBarBtnAction];
+        }]];
+        
+        [self alertControllerTextFieldTextDidChange:nil];
+        self.saveHandle=saveHandle;
+    }
+    return self;
+}
+
 /**
  *  Init view base layout
  */
@@ -200,6 +240,29 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
 }
 
 #pragma mark - Action Method
+-(void)detaiViewShowOnViewController:(UIViewController *)viewcontroller{
+    switch (self.modal) {
+        case CatDetailViewControllerMoalDatePicker:{
+            [viewcontroller.navigationController pushViewController:self animated:YES];
+        }
+            break;
+        case CatDetailViewControllerMoalSingleSection:{
+            [viewcontroller.navigationController pushViewController:self animated:YES];
+        }
+            break;
+        case CatDetailViewControllerMoalTextFieldEnter:{
+            [viewcontroller.navigationController pushViewController:self animated:YES];
+        }
+            break;
+        case CatDetailViewControllerMoalAlertController:{
+            [viewcontroller presentViewController:self.enterAlertView animated:YES completion:nil];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
 /**
  *  Show confirm information alert view
  */
@@ -237,6 +300,8 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
 -(void)saveBarBtnAction{
     switch (self.modal) {
         case CatDetailViewControllerMoalSingleSection:{
+            self.saveHandle(self.saveResult);
+            [self.navigationController popViewControllerAnimated:YES];
         }
             break;
         case CatDetailViewControllerMoalTextFieldEnter:{
@@ -247,6 +312,10 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
             NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:datePickerFormatString];
             self.saveResult=[dateFormatter stringFromDate:datePicker.date];
+        }
+            break;
+        case CatDetailViewControllerMoalAlertController:{
+            self.saveResult=((UITextField *)[self.enterAlertView.textFields firstObject]).text;
         }
             break;
         default:
@@ -263,6 +332,18 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
     } else {
         self.saveHandle(self.saveResult);
         [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+#pragma mark - UIAlertController
+-(void)alertControllerTextFieldTextDidChange:(id)sender{
+    NSString *textFieldText=((UITextField *)[self.enterAlertView.textFields firstObject]).text;
+    if (!self.allowResultEmpty) {
+        if (textFieldText.length == 0) {
+            [[self.enterAlertView.actions objectAtIndex:1] setEnabled:NO];
+        }else{
+            [[self.enterAlertView.actions objectAtIndex:1] setEnabled:YES];
+        }
     }
 }
 
@@ -319,7 +400,6 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
         case CatDetailViewControllerAlertViewModalConfrim:{
             if (buttonIndex==1) {
                 [self saveBarBtnAction];
-            } else {
             }
         }
             break;

@@ -58,9 +58,9 @@
                                                                                                                sections:@[@"Red",@"Blue"]
                                                                                                      defaultSectionText:cell.detailTextLabel.text
                                                                                                              saveHandle:^(NSString *saveResult) {
-                        [cell.detailTextLabel setText:saveResult];
+                                                                                                                 [cell.detailTextLabel setText:saveResult];
                     }];
-                    [self.navigationController pushViewController:detailView animated:YES];
+                    [detailView detaiViewShowOnViewController:self];
                 }
                     break;
                 case 1:{
@@ -69,9 +69,9 @@
                                                                                                 textFieldPlaceholderText:nil
                                                                                                    textFieldKeyboardType:UIKeyboardTypeDefault
                                                                                                               saveHandle:^(NSString *saveResult) {
-                        [cell.detailTextLabel setText:saveResult];
+                                                                                                                  [cell.detailTextLabel setText:saveResult];
                     }];
-                    [self.navigationController pushViewController:detailView animated:YES];
+                    [detailView detaiViewShowOnViewController:self];
                 }
                     break;
                 case 2:{
@@ -82,9 +82,22 @@
                                                                                                     dateFormatString:@"yyyy-MM-dd"
                                                                                                       datePickerMode:UIDatePickerModeDate
                                                                                                           saveHandle:^(NSString *saveResult) {
-                        [cell.detailTextLabel setText:saveResult];
+                                                                                                              [cell.detailTextLabel setText:saveResult];
                     }];
-                    [self.navigationController pushViewController:detailView animated:YES];
+                    [detailView detaiViewShowOnViewController:self];
+                }
+                    break;
+                case 3:{
+                    CatDetailViewController *detailView=[[CatDetailViewController alloc] initEnterAlertViewWithTitle:@"AlertView Enter"
+                                                                                                             message:@"Please enter something"
+                                                                                                       textfieldText:cell.detailTextLabel.text
+                                                                                                textfieldPlaceholder:@"Email,phone and other"
+                                                                                                   cancelButtonTitle:@"Cancel"
+                                                                                                     saveButtonTitle:@"Save"
+                                                                                                          saveHandle:^(NSString *saveResult) {
+                                                                                                              [cell.detailTextLabel setText:saveResult];
+                    }];
+                    [detailView detaiViewShowOnViewController:self];
                 }
                 default:
                     break;
@@ -97,7 +110,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return 4;
 }
 
 @end

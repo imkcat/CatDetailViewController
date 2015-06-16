@@ -90,4 +90,33 @@
                             datePickerMode:(UIDatePickerMode)datePickerMode
                                 saveHandle:(void(^)(NSString *saveResult))saveHandle;
 
+/**
+ *  Return a new detailViewController base on alert modal
+ *
+ *  @param title                AlertView title
+ *  @param message              AlertView message
+ *  @param textfieldText        AlertView textfield text
+ *  @param textfieldPlaceholder AlertView textfield placeholder
+ *  @param cancelButtonTitle    AlertView cancel button title
+ *  @param savelButtonTitle     AlertView save button title
+ *  @param saveHandle           Save bar item action handle
+ *
+ *  @return New initialize detailviewcontroller
+ */
+-(instancetype)initEnterAlertViewWithTitle:(NSString *)title
+                                   message:(NSString *)message
+                             textfieldText:(NSString *)textfieldText
+                      textfieldPlaceholder:(NSString *)textfieldPlaceholder
+                              cancelButtonTitle:(NSString *)cancelButtonTitle
+                              saveButtonTitle:(NSString *)savelButtonTitle
+                                saveHandle:(void(^)(NSString *saveResult))saveHandle NS_AVAILABLE_IOS(8_0);
+
+
+/**
+ *  Displaying a detailViewController on appoint viewcontroller
+ *
+ *  @param viewcontroller The viewcontroller for displaying
+ */
+-(void)detaiViewShowOnViewController:(UIViewController *)viewcontroller;
+
 @end
