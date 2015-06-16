@@ -23,7 +23,20 @@ CatDetailViewController is available on [CocoaPods](http://cocoapods.org).Just a
 pod 'CatDetailViewController'
 ```
 
-# New Properties
+# New Method and Properties
+## Method
+```objective-c
+//This method is only available on ios 8.0+
+-(instancetype)initEnterAlertViewWithTitle:(NSString *)title
+                                   message:(NSString *)message
+                             textfieldText:(NSString *)textfieldText
+                      textfieldPlaceholder:(NSString *)textfieldPlaceholder
+                              cancelButtonTitle:(NSString *)cancelButtonTitle
+                              saveButtonTitle:(NSString *)savelButtonTitle
+                                saveHandle:(void(^)(NSString *saveResult))saveHandle
+```
+
+## Properties
 * **allowResultEmpty**:A boolean value that the empty information alertview show(Default is NO)
 * **emptyResultAlertViewMessage**:The text for empty alertview message
 * **enableConfirmAlertView**:A boolean value that the confirm information alertview show(Default is NO)
@@ -35,10 +48,13 @@ pod 'CatDetailViewController'
 ```objective-c
 #import "CatDetailViewController"
 
-CatDetailViewController *detailView=[[CatDetailViewController alloc] initSingleSectionViewWithTitle:@"Select Color" sections:@[@"Red",@"Blue"] defaultSectionText:cell.detailTextLabel.text saveHandle:^(NSString *saveResult) {
-	//Do anything you want
+CatDetailViewController *detailView=[[CatDetailViewController alloc] initSingleSectionViewWithTitle:@"Select Color"
+					sections:@[@"Red",@"Blue"] 
+				defaultSectionText:cell.detailTextLabel.text 
+					saveHandle:^(NSString *saveResult) {
+				//Do anything you want
 }];
-[self.navigationController pushViewController:detailView animated:YES];
+[detailView detaiViewShowOnViewController:self];
 ```
 
 # Note
