@@ -29,7 +29,11 @@ typedef NS_ENUM(NSInteger, CatDetailViewControllerMoal){
     /**
      *  Viewcontroller with enter alertcontroller
      */
-    CatDetailViewControllerMoalAlertController
+    CatDetailViewControllerMoalAlertController,
+    /**
+     *  ViewController with action sheet
+     */
+    CatDetailViewControllerMoalActionSheet
 };
 
 /**
@@ -41,9 +45,9 @@ typedef NS_ENUM(NSInteger, CatDetailViewControllerAlertViewModal){
      */
     CatDetailViewControllerAlertViewModalEmptyResult,
     /**
-     *  Confrim information alertview
+     *  Confirm information alertview
      */
-    CatDetailViewControllerAlertViewModalConfrim,
+    CatDetailViewControllerAlertViewModalConfirm,
     /**
      *  Section empty alertview
      */
@@ -52,7 +56,7 @@ typedef NS_ENUM(NSInteger, CatDetailViewControllerAlertViewModal){
 
 static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
 
-@interface CatDetailViewController ()<UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, UINavigationControllerDelegate, UITextFieldDelegate>{
+@interface CatDetailViewController ()<UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, UITextFieldDelegate, UIActionSheetDelegate>{
     UITableView *sectionsTable;
     UITextField *enterTextField;
     UIDatePicker *datePicker;
@@ -81,6 +85,21 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
  *  The alertViewcontoll for enter
  */
 @property(nonatomic ,retain) UIAlertController *enterAlertView NS_AVAILABLE_IOS(8_0);
+
+/**
+ *  The actionsheet for ios 7.0+
+ */
+@property(nonatomic ,retain) UIActionSheet *actionSheet;
+
+/**
+ *  Array contain all actionsheet item
+ */
+@property(nonatomic ,retain) NSMutableArray *actionSheetItemArray;
+
+/**
+ *  The alertcontroller for ios 8.0+
+ */
+@property(nonatomic ,retain) UIAlertController *alertController;
 
 @end
 
@@ -217,6 +236,34 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
     return self;
 }
 
+-(instancetype)initActionSheetWithTitle:(NSString *)title
+                              itemArray:(NSArray *)itemArray
+                        cancelItemTitle:(NSString *)cancelItemTitle{
+    self=[super init];
+    if (self) {
+        self.modal=CatDetailViewControllerMoalActionSheet;
+        
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >=8.0) {
+            self.alertController=[UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+            for (CatDetailActionSheetItem *item in itemArray) {
+                [self.alertController addAction:[UIAlertAction actionWithTitle:item.itemTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                    item.actionHandle(item);
+                }]];
+            }
+            [self.alertController addAction:[UIAlertAction actionWithTitle:cancelItemTitle style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+                [self.alertController dismissViewControllerAnimated:YES completion:nil];
+            }]];
+        }else{
+            self.actionSheet=[[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:nil destructiveButtonTitle:cancelItemTitle otherButtonTitles:nil];
+            self.actionSheetItemArray=[[NSMutableArray alloc] initWithArray:itemArray];
+            for (CatDetailActionSheetItem *item in itemArray) {
+                [self.actionSheet addButtonWithTitle:item.itemTitle];
+            }
+        }
+    }
+    return self;
+}
+
 /**
  *  Init view base layout
  */
@@ -258,6 +305,14 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
             [viewcontroller presentViewController:self.enterAlertView animated:YES completion:nil];
         }
             break;
+        case CatDetailViewControllerMoalActionSheet:{
+            if ([[[UIDevice currentDevice] systemVersion] floatValue] >=8.0) {
+                [viewcontroller presentViewController:self.alertController animated:YES completion:nil];
+            }else{
+                [self.actionSheet showInView:viewcontroller.view];
+            }
+        }
+            break;
         default:
             break;
     }
@@ -275,7 +330,7 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
     }
     
     detailControllerAlertView=[[UIAlertView alloc] initWithTitle:self.saveConfirmAlertViewTitle message:self.saveConfirmAlertViewMessage delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
-    [detailControllerAlertView setTag:CatDetailViewControllerAlertViewModalConfrim];
+    [detailControllerAlertView setTag:CatDetailViewControllerAlertViewModalConfirm];
     [detailControllerAlertView show];
 }
 
@@ -397,7 +452,7 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
         case CatDetailViewControllerAlertViewModalEmptyResult:{
         }
             break;
-        case CatDetailViewControllerAlertViewModalConfrim:{
+        case CatDetailViewControllerAlertViewModalConfirm:{
             if (buttonIndex==1) {
                 [self saveBarBtnAction];
             }
@@ -405,6 +460,14 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
             break;
         default:
             break;
+    }
+}
+
+#pragma mark - UIActionSheetDelegate
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex!=0) {
+        CatDetailActionSheetItem *item=[self.actionSheetItemArray objectAtIndex:buttonIndex-1];
+        item.actionHandle(item);
     }
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CatDetailActionSheetItem.h"
 
 @interface CatDetailViewController : UIViewController
 
@@ -110,6 +111,20 @@
                               cancelButtonTitle:(NSString *)cancelButtonTitle
                               saveButtonTitle:(NSString *)savelButtonTitle
                                 saveHandle:(void(^)(NSString *saveResult))saveHandle NS_AVAILABLE_IOS(8_0);
+
+
+/**
+ *  Return a new detailViewController base on action sheet modal
+ *
+ *  @param title           Action sheet title
+ *  @param itemArray       Array contain action sheet item
+ *  @param cancelItemTitle Text for action sheet cancel button
+ *
+ *  @return New initialize detailviewcontroller
+ */
+-(instancetype)initActionSheetWithTitle:(NSString *)title
+                              itemArray:(NSArray *)itemArray
+                        cancelItemTitle:(NSString *)cancelItemTitle;
 
 
 /**

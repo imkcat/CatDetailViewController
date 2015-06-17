@@ -35,6 +35,9 @@
                 case 3:
                     [self.textLabel setText:@"AlertController"];
                     break;
+                case 4:
+                    [self.textLabel setText:@"AlertSheet"];
+                    break;
                 default:
                     break;
             }

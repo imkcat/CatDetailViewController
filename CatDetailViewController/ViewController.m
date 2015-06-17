@@ -10,7 +10,9 @@
 #import "MainViewTableViewCell.h"
 #import "CatDetailViewController.h"
 
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource>{
+    CatDetailViewController *detailView1;
+}
 
 @end
 
@@ -99,6 +101,18 @@
                     }];
                     [detailView detaiViewShowOnViewController:self];
                 }
+                    break;
+                case 4:{
+                    CatDetailActionSheetItem *manItem=[[CatDetailActionSheetItem alloc] initWithTitle:@"Man" actionHandle:^(CatDetailActionSheetItem *item) {
+                        [cell.detailTextLabel setText:item.itemTitle];
+                    }];
+                    CatDetailActionSheetItem *womanItem=[[CatDetailActionSheetItem alloc] initWithTitle:@"Woman" actionHandle:^(CatDetailActionSheetItem *item) {
+                        [cell.detailTextLabel setText:item.itemTitle];
+                    }];
+                    detailView1=[[CatDetailViewController alloc] initActionSheetWithTitle:@"Choose one of them" itemArray:@[manItem, womanItem] cancelItemTitle:@"Cancel"];
+                    [detailView1 detaiViewShowOnViewController:self];
+                }
+                    break;
                 default:
                     break;
             }
@@ -110,7 +124,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+    return 5;
 }
 
 @end
