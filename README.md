@@ -1,7 +1,7 @@
 # CatDetailViewController
 
 [![Build Status](https://travis-ci.org/K-cat/CatDetailViewController.svg)](https://travis-ci.org/K-cat)
-[![Version](https://img.shields.io/cocoapods/v/CatDetailViewController.svg)](https://cocoapods.org/?q=CatDetailViewController)
+[![Version](https://img.shields.io/cocoapods/v/CatDetailViewController.svg)](https://cocoapods.org/pods/CatDetailViewController)
 [![Platform](https://img.shields.io/cocoapods/p/CatDetailViewController.svg)]()
 [![License](https://img.shields.io/cocoapods/l/CatDetailViewController.svg)]()
 
