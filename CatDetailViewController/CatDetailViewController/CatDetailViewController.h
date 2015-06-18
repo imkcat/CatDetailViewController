@@ -91,6 +91,17 @@
                                 saveHandle:(void(^)(NSString *saveResult))saveHandle;
 
 /**
+ *  Return a new detailViewController base on citypicker modal
+ *
+ *  @param title      ViewController title
+ *  @param saveHandle Save bar item action handle
+ *
+ *  @return New initialize detailviewcontroller
+ */
+-(instancetype)initChinaCityPickerViewWithTitle:(NSString *)title
+                                     saveHandle:(void(^)(NSString *saveResult))saveHandle;
+
+/**
  *  Displaying a detailViewController on appoint viewcontroller
  *
  *  @param viewcontroller The viewcontroller for displaying

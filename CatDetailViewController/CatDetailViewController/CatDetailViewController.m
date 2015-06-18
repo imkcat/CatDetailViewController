@@ -26,6 +26,10 @@ typedef NS_ENUM(NSInteger, CatDetailViewControllerMoal){
      *  Viewcontroller with datepicker
      */
     CatDetailViewControllerMoalDatePicker,
+    /**
+     *  Viewcontroller with citypicker
+     */
+    CatDetailViewControllerMoalCityPciker
 };
 
 /**
@@ -48,12 +52,16 @@ typedef NS_ENUM(NSInteger, CatDetailViewControllerAlertViewModal){
 
 static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
 
-@interface CatDetailViewController ()<UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, UITextFieldDelegate, UIActionSheetDelegate>{
+@interface CatDetailViewController ()<UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIPickerViewDataSource, UIPickerViewDelegate>{
     UITableView *sectionsTable;
     UITextField *enterTextField;
     UIDatePicker *datePicker;
+    UIPickerView *cityPicker;
     UIAlertView *detailControllerAlertView;
     NSMutableArray *sectionsArray;
+    NSMutableArray *provinceArray;
+    NSMutableDictionary *cityDict;
+    NSMutableArray *cityArray;
     NSIndexPath *checkmarkIndexPath;
     NSString *datePickerFormatString;
 }
@@ -182,6 +190,31 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
     return self;
 }
 
+-(instancetype)initChinaCityPickerViewWithTitle:(NSString *)title
+                                     saveHandle:(void (^)(NSString *))saveHandle{
+    self=[super init];
+    if (self) {
+        self.modal=CatDetailViewControllerMoalCityPciker;
+        
+        NSString *cityPlistPath=[[NSBundle mainBundle] pathForResource:@"ChinaCity" ofType:@"plist"];
+        cityDict=[NSMutableDictionary dictionaryWithContentsOfFile:cityPlistPath];
+        provinceArray=[[NSMutableArray alloc] init];
+        [provinceArray addObjectsFromArray:[cityDict allKeys]];
+        cityArray=[[NSMutableArray alloc] init];
+        [cityArray addObjectsFromArray:[cityDict objectForKey:[provinceArray firstObject]]];
+        cityPicker=[[UIPickerView alloc] init];
+        [cityPicker setCenter:self.view.center];
+        [self.view addSubview:cityPicker];
+        
+        cityPicker.delegate=self;
+        cityPicker.dataSource=self;
+        
+        [self initBaseLayout];
+        self.saveHandle=saveHandle;
+    }
+    return self;
+}
+
 /**
  *  Init view base layout
  */
@@ -216,6 +249,10 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
         }
             break;
         case CatDetailViewControllerMoalTextFieldEnter:{
+            [viewcontroller.navigationController pushViewController:self animated:YES];
+        }
+            break;
+        case CatDetailViewControllerMoalCityPciker:{
             [viewcontroller.navigationController pushViewController:self animated:YES];
         }
             break;
@@ -273,6 +310,11 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
             self.saveResult=[dateFormatter stringFromDate:datePicker.date];
         }
             break;
+        case CatDetailViewControllerMoalCityPciker:{
+            NSString *provinceString=[provinceArray objectAtIndex:[cityPicker selectedRowInComponent:0]];
+            NSString *cityString=[cityArray objectAtIndex:[cityPicker selectedRowInComponent:1]];
+            self.saveResult=[NSString stringWithFormat:@"%@-%@",provinceString,cityString];
+        }
         default:
             break;
     }
@@ -361,6 +403,36 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
         default:
             break;
     }
+}
+
+#pragma mark - UIPickerViewDelegate
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    if (component==0) {
+        return provinceArray.count;
+    } else{
+        return cityArray.count;
+    }
+}
+
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    if (component==0) {
+        return [provinceArray objectAtIndex:row];
+    }else{
+        return [cityArray objectAtIndex:row];
+    }
+}
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    if (component==0) {
+        NSString *provinceName=[provinceArray objectAtIndex:row];
+        [cityArray removeAllObjects];
+        [cityArray addObjectsFromArray:[cityDict objectForKey:provinceName]];
+        [pickerView reloadComponent:1];
+    }
+}
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 2;
 }
 
 /*

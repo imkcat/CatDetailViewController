@@ -89,6 +89,14 @@
                     [detailView detaiViewShowOnViewController:self];
                 }
                     break;
+                case 3:{
+                    CatDetailViewController *detailView=[[CatDetailViewController alloc] initChinaCityPickerViewWithTitle:@"Select city"
+                                                                                                               saveHandle:^(NSString *saveResult) {
+                                                                                                                   [cell.detailTextLabel setText:saveResult];
+                    }];
+                    [detailView detaiViewShowOnViewController:self];
+                }
+                    break;
                 default:
                     break;
             }
@@ -100,7 +108,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return 4;
 }
 
 @end
