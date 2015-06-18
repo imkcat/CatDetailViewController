@@ -89,30 +89,6 @@
                     [detailView detaiViewShowOnViewController:self];
                 }
                     break;
-                case 3:{
-                    CatDetailViewController *detailView=[[CatDetailViewController alloc] initEnterAlertViewWithTitle:@"AlertView Enter"
-                                                                                                             message:@"Please enter something"
-                                                                                                       textfieldText:cell.detailTextLabel.text
-                                                                                                textfieldPlaceholder:@"Email,phone and other"
-                                                                                                   cancelButtonTitle:@"Cancel"
-                                                                                                     saveButtonTitle:@"Save"
-                                                                                                          saveHandle:^(NSString *saveResult) {
-                                                                                                              [cell.detailTextLabel setText:saveResult];
-                    }];
-                    [detailView detaiViewShowOnViewController:self];
-                }
-                    break;
-                case 4:{
-                    CatDetailActionSheetItem *manItem=[[CatDetailActionSheetItem alloc] initWithTitle:@"Man" actionHandle:^(CatDetailActionSheetItem *item) {
-                        [cell.detailTextLabel setText:item.itemTitle];
-                    }];
-                    CatDetailActionSheetItem *womanItem=[[CatDetailActionSheetItem alloc] initWithTitle:@"Woman" actionHandle:^(CatDetailActionSheetItem *item) {
-                        [cell.detailTextLabel setText:item.itemTitle];
-                    }];
-                    detailView1=[[CatDetailViewController alloc] initActionSheetWithTitle:@"Choose one of them" itemArray:@[manItem, womanItem] cancelItemTitle:@"Cancel"];
-                    [detailView1 detaiViewShowOnViewController:self];
-                }
-                    break;
                 default:
                     break;
             }
@@ -124,7 +100,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return 3;
 }
 
 @end

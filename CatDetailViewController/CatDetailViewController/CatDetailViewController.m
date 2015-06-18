@@ -26,14 +26,6 @@ typedef NS_ENUM(NSInteger, CatDetailViewControllerMoal){
      *  Viewcontroller with datepicker
      */
     CatDetailViewControllerMoalDatePicker,
-    /**
-     *  Viewcontroller with enter alertcontroller
-     */
-    CatDetailViewControllerMoalAlertController,
-    /**
-     *  ViewController with action sheet
-     */
-    CatDetailViewControllerMoalActionSheet
 };
 
 /**
@@ -85,21 +77,6 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
  *  The alertViewcontoll for enter
  */
 @property(nonatomic ,retain) UIAlertController *enterAlertView NS_AVAILABLE_IOS(8_0);
-
-/**
- *  The actionsheet for ios 7.0+
- */
-@property(nonatomic ,retain) UIActionSheet *actionSheet;
-
-/**
- *  Array contain all actionsheet item
- */
-@property(nonatomic ,retain) NSMutableArray *actionSheetItemArray;
-
-/**
- *  The alertcontroller for ios 8.0+
- */
-@property(nonatomic ,retain) UIAlertController *alertController;
 
 @end
 
@@ -205,65 +182,6 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
     return self;
 }
 
--(instancetype)initEnterAlertViewWithTitle:(NSString *)title
-                                   message:(NSString *)message
-                             textfieldText:(NSString *)textfieldText
-                      textfieldPlaceholder:(NSString *)textfieldPlaceholder
-                         cancelButtonTitle:(NSString *)cancelButtonTitle
-                           saveButtonTitle:(NSString *)savelButtonTitle
-                                saveHandle:(void (^)(NSString *))saveHandle{
-    self=[super init];
-    if (self) {
-        self.modal=CatDetailViewControllerMoalAlertController;
-        
-        self.enterAlertView=[UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-        
-        [self.enterAlertView addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-            [textField setPlaceholder:textfieldPlaceholder];
-            [textField setText:textfieldText];
-        }];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertControllerTextFieldTextDidChange:) name:UITextFieldTextDidChangeNotification object:[self.enterAlertView.textFields firstObject]];
-        [self.enterAlertView addAction:[UIAlertAction actionWithTitle:cancelButtonTitle style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-            [self.enterAlertView dismissViewControllerAnimated:YES completion:nil];
-        }]];
-        [self.enterAlertView addAction:[UIAlertAction actionWithTitle:savelButtonTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [self saveBarBtnAction];
-        }]];
-        
-        [self alertControllerTextFieldTextDidChange:nil];
-        self.saveHandle=saveHandle;
-    }
-    return self;
-}
-
--(instancetype)initActionSheetWithTitle:(NSString *)title
-                              itemArray:(NSArray *)itemArray
-                        cancelItemTitle:(NSString *)cancelItemTitle{
-    self=[super init];
-    if (self) {
-        self.modal=CatDetailViewControllerMoalActionSheet;
-        
-        if ([[[UIDevice currentDevice] systemVersion] floatValue] >=8.0) {
-            self.alertController=[UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-            for (CatDetailActionSheetItem *item in itemArray) {
-                [self.alertController addAction:[UIAlertAction actionWithTitle:item.itemTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                    item.actionHandle(item);
-                }]];
-            }
-            [self.alertController addAction:[UIAlertAction actionWithTitle:cancelItemTitle style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-                [self.alertController dismissViewControllerAnimated:YES completion:nil];
-            }]];
-        }else{
-            self.actionSheet=[[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:nil destructiveButtonTitle:cancelItemTitle otherButtonTitles:nil];
-            self.actionSheetItemArray=[[NSMutableArray alloc] initWithArray:itemArray];
-            for (CatDetailActionSheetItem *item in itemArray) {
-                [self.actionSheet addButtonWithTitle:item.itemTitle];
-            }
-        }
-    }
-    return self;
-}
-
 /**
  *  Init view base layout
  */
@@ -299,18 +217,6 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
             break;
         case CatDetailViewControllerMoalTextFieldEnter:{
             [viewcontroller.navigationController pushViewController:self animated:YES];
-        }
-            break;
-        case CatDetailViewControllerMoalAlertController:{
-            [viewcontroller presentViewController:self.enterAlertView animated:YES completion:nil];
-        }
-            break;
-        case CatDetailViewControllerMoalActionSheet:{
-            if ([[[UIDevice currentDevice] systemVersion] floatValue] >=8.0) {
-                [viewcontroller presentViewController:self.alertController animated:YES completion:nil];
-            }else{
-                [self.actionSheet showInView:viewcontroller.view];
-            }
         }
             break;
         default:
@@ -355,8 +261,6 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
 -(void)saveBarBtnAction{
     switch (self.modal) {
         case CatDetailViewControllerMoalSingleSection:{
-            self.saveHandle(self.saveResult);
-            [self.navigationController popViewControllerAnimated:YES];
         }
             break;
         case CatDetailViewControllerMoalTextFieldEnter:{
@@ -367,10 +271,6 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
             NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:datePickerFormatString];
             self.saveResult=[dateFormatter stringFromDate:datePicker.date];
-        }
-            break;
-        case CatDetailViewControllerMoalAlertController:{
-            self.saveResult=((UITextField *)[self.enterAlertView.textFields firstObject]).text;
         }
             break;
         default:
@@ -460,14 +360,6 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
             break;
         default:
             break;
-    }
-}
-
-#pragma mark - UIActionSheetDelegate
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex!=0) {
-        CatDetailActionSheetItem *item=[self.actionSheetItemArray objectAtIndex:buttonIndex-1];
-        item.actionHandle(item);
     }
 }
 

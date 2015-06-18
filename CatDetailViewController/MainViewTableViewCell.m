@@ -32,12 +32,6 @@
                 case 2:
                     [self.textLabel setText:@"DatePicker"];
                     break;
-                case 3:
-                    [self.textLabel setText:@"AlertController"];
-                    break;
-                case 4:
-                    [self.textLabel setText:@"AlertSheet"];
-                    break;
                 default:
                     break;
             }

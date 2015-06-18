@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CatDetailActionSheetItem.h"
 
 @interface CatDetailViewController : UIViewController
 
@@ -90,42 +89,6 @@
                           dateFormatString:(NSString *)dateFormatString
                             datePickerMode:(UIDatePickerMode)datePickerMode
                                 saveHandle:(void(^)(NSString *saveResult))saveHandle;
-
-/**
- *  Return a new detailViewController base on alert modal
- *
- *  @param title                AlertView title
- *  @param message              AlertView message
- *  @param textfieldText        AlertView textfield text
- *  @param textfieldPlaceholder AlertView textfield placeholder
- *  @param cancelButtonTitle    AlertView cancel button title
- *  @param savelButtonTitle     AlertView save button title
- *  @param saveHandle           Save bar item action handle
- *
- *  @return New initialize detailviewcontroller
- */
--(instancetype)initEnterAlertViewWithTitle:(NSString *)title
-                                   message:(NSString *)message
-                             textfieldText:(NSString *)textfieldText
-                      textfieldPlaceholder:(NSString *)textfieldPlaceholder
-                              cancelButtonTitle:(NSString *)cancelButtonTitle
-                              saveButtonTitle:(NSString *)savelButtonTitle
-                                saveHandle:(void(^)(NSString *saveResult))saveHandle NS_AVAILABLE_IOS(8_0);
-
-
-/**
- *  Return a new detailViewController base on action sheet modal
- *
- *  @param title           Action sheet title
- *  @param itemArray       Array contain action sheet item
- *  @param cancelItemTitle Text for action sheet cancel button
- *
- *  @return New initialize detailviewcontroller
- */
--(instancetype)initActionSheetWithTitle:(NSString *)title
-                              itemArray:(NSArray *)itemArray
-                        cancelItemTitle:(NSString *)cancelItemTitle;
-
 
 /**
  *  Displaying a detailViewController on appoint viewcontroller

@@ -23,8 +23,8 @@ CatDetailViewController is available on [CocoaPods](http://cocoapods.org).Just a
 pod 'CatDetailViewController'
 ```
 
-# New Method and Properties
-## Method
+# New Properties
+<!-- ## Method
 ```objective-c
 //This method is only available on ios 8.0+
 -(instancetype)initEnterAlertViewWithTitle:(NSString *)title
@@ -34,9 +34,9 @@ pod 'CatDetailViewController'
                               cancelButtonTitle:(NSString *)cancelButtonTitle
                               saveButtonTitle:(NSString *)savelButtonTitle
                                 saveHandle:(void(^)(NSString *saveResult))saveHandle
-```
+``` -->
 
-## Properties
+<!-- ## Properties -->
 * **allowResultEmpty**:A boolean value that the empty information alertview show(Default is NO)
 * **emptyResultAlertViewMessage**:The text for empty alertview message
 * **enableConfirmAlertView**:A boolean value that the confirm information alertview show(Default is NO)
