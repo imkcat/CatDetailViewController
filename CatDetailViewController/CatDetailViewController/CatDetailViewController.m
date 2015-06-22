@@ -238,7 +238,7 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
 }
 
 #pragma mark - Action Method
--(void)detaiViewShowOnViewController:(UIViewController *)viewcontroller{
+-(void)detailViewShowOnViewController:(UIViewController *)viewcontroller{
     switch (self.modal) {
         case CatDetailViewControllerMoalDatePicker:{
             [viewcontroller.navigationController pushViewController:self animated:YES];

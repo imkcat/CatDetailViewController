@@ -106,6 +106,6 @@
  *
  *  @param viewcontroller The viewcontroller for displaying
  */
--(void)detaiViewShowOnViewController:(UIViewController *)viewcontroller;
+-(void)detailViewShowOnViewController:(UIViewController *)viewcontroller;
 
 @end

@@ -48,7 +48,7 @@ CatDetailViewController *detailView=[[CatDetailViewController alloc] initSingleS
 					saveHandle:^(NSString *saveResult) {
 				//Do anything you want
 }];
-[detailView detaiViewShowOnViewController:self];
+[detailView detailViewShowOnViewController:self];
 ```
 
 # Note

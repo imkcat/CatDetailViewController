@@ -62,7 +62,7 @@
                                                                                                              saveHandle:^(NSString *saveResult) {
                                                                                                                  [cell.detailTextLabel setText:saveResult];
                     }];
-                    [detailView detaiViewShowOnViewController:self];
+                    [detailView detailViewShowOnViewController:self];
                 }
                     break;
                 case 1:{
@@ -73,7 +73,7 @@
                                                                                                               saveHandle:^(NSString *saveResult) {
                                                                                                                   [cell.detailTextLabel setText:saveResult];
                     }];
-                    [detailView detaiViewShowOnViewController:self];
+                    [detailView detailViewShowOnViewController:self];
                 }
                     break;
                 case 2:{
@@ -86,7 +86,7 @@
                                                                                                           saveHandle:^(NSString *saveResult) {
                                                                                                               [cell.detailTextLabel setText:saveResult];
                     }];
-                    [detailView detaiViewShowOnViewController:self];
+                    [detailView detailViewShowOnViewController:self];
                 }
                     break;
                 case 3:{
@@ -94,7 +94,7 @@
                                                                                                                saveHandle:^(NSString *saveResult) {
                                                                                                                    [cell.detailTextLabel setText:saveResult];
                     }];
-                    [detailView detaiViewShowOnViewController:self];
+                    [detailView detailViewShowOnViewController:self];
                 }
                     break;
                 default:
