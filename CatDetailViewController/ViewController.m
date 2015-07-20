@@ -97,6 +97,13 @@
                     [detailView detailViewShowOnViewController:self];
                 }
                     break;
+                case 4:{
+                    CatDetailViewController *detailView=[[CatDetailViewController alloc] initTextInputViewWithTitle:@"Enter Something" text:cell.detailTextLabel.text saveHandle:^(NSString *saveResult) {
+                        [cell.detailTextLabel setText:saveResult];
+                    }];
+                    [detailView detailViewShowOnViewController:self];
+                }
+                    break;
                 default:
                     break;
             }
@@ -108,7 +115,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+    return 5;
 }
 
 @end

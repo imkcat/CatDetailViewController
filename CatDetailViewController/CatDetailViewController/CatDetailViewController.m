@@ -29,7 +29,11 @@ typedef NS_ENUM(NSInteger, CatDetailViewControllerMoal){
     /**
      *  Viewcontroller with citypicker
      */
-    CatDetailViewControllerMoalCityPciker
+    CatDetailViewControllerMoalCityPciker,
+    /**
+     *  Viewcontroller with textview
+     */
+    CatDetailViewControllerMoalTextInput
 };
 
 /**
@@ -57,6 +61,7 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
     UITextField *enterTextField;
     UIDatePicker *datePicker;
     UIPickerView *cityPicker;
+    UITextView *enterTextView;
     UIAlertView *detailControllerAlertView;
     NSMutableArray *sectionsArray;
     NSMutableArray *provinceArray;
@@ -194,6 +199,8 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
                                      saveHandle:(void (^)(NSString *))saveHandle{
     self=[super init];
     if (self) {
+        [self setTitle:title];
+        
         self.modal=CatDetailViewControllerMoalCityPciker;
         
         NSString *cityPlistPath=[[NSBundle mainBundle] pathForResource:@"ChinaCity" ofType:@"plist"];
@@ -208,6 +215,25 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
         
         cityPicker.delegate=self;
         cityPicker.dataSource=self;
+        
+        [self initBaseLayout];
+        self.saveHandle=saveHandle;
+    }
+    return self;
+}
+
+-(instancetype)initTextInputViewWithTitle:(NSString *)title text:(NSString *)text saveHandle:(void (^)(NSString *))saveHandle{
+    self=[super init];
+    if (self) {
+        [self setTitle:title];
+        
+        self.modal=CatDetailViewControllerMoalTextInput;
+        
+        enterTextView=[[UITextView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
+        [self.view addSubview:enterTextView];
+        if (text.length!=0) {
+            [enterTextView setText:text];
+        }
         
         [self initBaseLayout];
         self.saveHandle=saveHandle;
@@ -253,6 +279,10 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
         }
             break;
         case CatDetailViewControllerMoalCityPciker:{
+            [viewcontroller.navigationController pushViewController:self animated:YES];
+        }
+            break;
+        case CatDetailViewControllerMoalTextInput:{
             [viewcontroller.navigationController pushViewController:self animated:YES];
         }
             break;
@@ -315,6 +345,11 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
             NSString *cityString=[cityArray objectAtIndex:[cityPicker selectedRowInComponent:1]];
             self.saveResult=[NSString stringWithFormat:@"%@-%@",provinceString,cityString];
         }
+            break;
+        case CatDetailViewControllerMoalTextInput:{
+            self.saveResult=enterTextView.text;
+        }
+            break;
         default:
             break;
     }

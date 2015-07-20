@@ -35,6 +35,9 @@
                 case 3:
                     [self.textLabel setText:@"CityPicker"];
                     break;
+                case 4:
+                    [self.textLabel setText:@"TextView Enter"];
+                    break;
                 default:
                     break;
             }
