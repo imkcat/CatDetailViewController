@@ -40,11 +40,8 @@ pod 'CatDetailViewController'
 ```objective-c
 #import "CatDetailViewController"
 
-CatDetailViewController *detailView=[[CatDetailViewController alloc] initSingleSectionViewWithTitle:@"Select Color"
-					sections:@[@"Red",@"Blue"] 
-				defaultSectionText:cell.detailTextLabel.text 
-					saveHandle:^(NSString *saveResult) {
-				//Do anything you want
+CatDetailViewController *detailView = [[CatDetailViewController alloc] initSingleSectionViewWithTitle:@"Select Color" sections:@[@"Red",@"Blue"] defaultSectionText:cell.detailTextLabel.text saveHandle:^(NSString *saveResult) {
+	//Do anything you want
 }];
 [detailView detailViewShowOnViewController:self];
 ```
