@@ -9,11 +9,9 @@
 
 CatDetailViewController is a quicker way to create a viewcontroller for different type information enter,such as text,date or table!CatDetailViewController can make your code compectly,and replace delegate way!
 
-# ScreenShots
+# ScreenShot
 
-![ScreenShots1](http://kcat.co/wp-content/uploads/2015/06/single-section.gif)
-![ScreenShots2](http://kcat.co/wp-content/uploads/2015/06/textfield.gif)
-![ScreenShots3](http://kcat.co/wp-content/uploads/2015/06/datepicker.gif)
+![ScreenShots1](https://raw.githubusercontent.com/K-cat/CatDetailViewController/master/ScreenShot.gif)
 
 # Installation
 
