@@ -57,18 +57,19 @@ typedef NS_ENUM(NSInteger, CatDetailViewControllerAlertViewModal){
 static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
 
 @interface CatDetailViewController ()<UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIPickerViewDataSource, UIPickerViewDelegate>{
-    UITableView *sectionsTable;
-    UITextField *enterTextField;
-    UIDatePicker *datePicker;
-    UIPickerView *cityPicker;
-    UITextView *enterTextView;
-    UIAlertView *detailControllerAlertView;
-    NSMutableArray *sectionsArray;
-    NSMutableArray *provinceArray;
-    NSMutableDictionary *cityDict;
-    NSMutableArray *cityArray;
-    NSIndexPath *checkmarkIndexPath;
-    NSString *datePickerFormatString;
+    UITableView *_sectionsTable;
+    UITextField *_enterTextField;
+    UIDatePicker *_datePicker;
+    UIPickerView *_cityPicker;
+    UITextView *_enterTextView;
+    UIAlertView *_detailControllerAlertView;
+    NSMutableArray *_sectionsArray;
+    NSMutableArray *_provinceArray;
+    NSMutableDictionary *_cityDict;
+    NSMutableArray *_cityArray;
+    NSIndexPath *_checkmarkIndexPath;
+    NSString *_datePickerFormatString;
+    UIBarButtonItem *_saveBarBtn;
 }
 
 /**
@@ -116,23 +117,27 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
         self.modal=CatDetailViewControllerMoalSingleSection;
         
         [self setTitle:title];
-        sectionsTable=[[UITableView alloc] initWithFrame:self.view.bounds];
-        [self.view addSubview:sectionsTable];
+        _sectionsTable=[[UITableView alloc] initWithFrame:self.view.bounds];
+        [self.view addSubview:_sectionsTable];
         
         if (sections.count==0) {
-            detailControllerAlertView=[[UIAlertView alloc] initWithTitle:@"CatDetailViewController" message:@"Please make sure array is not empty" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [detailControllerAlertView setTag:CatDetailViewControllerAlertViewModalSectionEmpty];
-            [detailControllerAlertView show];
+            _detailControllerAlertView=[[UIAlertView alloc] initWithTitle:@"CatDetailViewController"
+                                                                  message:@"Please make sure array is not empty"
+                                                                 delegate:self
+                                                        cancelButtonTitle:@"OK"
+                                                        otherButtonTitles:nil];
+            [_detailControllerAlertView setTag:CatDetailViewControllerAlertViewModalSectionEmpty];
+            [_detailControllerAlertView show];
         }else{
-            sectionsArray=[[NSMutableArray alloc] initWithArray:sections];
-            [sectionsTable registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
-            sectionsTable.delegate=self;
-            sectionsTable.dataSource=self;
+            _sectionsArray=[[NSMutableArray alloc] initWithArray:sections];
+            [_sectionsTable registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
+            _sectionsTable.delegate=self;
+            _sectionsTable.dataSource=self;
             
             if ([sections containsObject:defaultSectionText]) {
-                checkmarkIndexPath=[NSIndexPath indexPathForRow:[sections indexOfObject:defaultSectionText] inSection:0];
+                _checkmarkIndexPath=[NSIndexPath indexPathForRow:[sections indexOfObject:defaultSectionText] inSection:0];
             }else{
-                checkmarkIndexPath=nil;
+                _checkmarkIndexPath=nil;
             }
             
             [self initBaseLayout];
@@ -154,12 +159,12 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
         
         self.modal=CatDetailViewControllerMoalTextFieldEnter;
         
-        enterTextField=[[UITextField alloc] initWithFrame:CGRectMake(8, 64+8, CGRectGetWidth(self.view.bounds)-16, 30)];
-        [enterTextField setBorderStyle:UITextBorderStyleRoundedRect];
-        [enterTextField setText:textFieldDefaultText];
-        [enterTextField setPlaceholder:textFieldPlaceholderText];
-        [enterTextField setKeyboardType:textFieldKeyboardType];
-        [self.view addSubview:enterTextField];
+        _enterTextField=[[UITextField alloc] initWithFrame:CGRectMake(8, 64+8, CGRectGetWidth(self.view.bounds)-16, 30)];
+        [_enterTextField setBorderStyle:UITextBorderStyleRoundedRect];
+        [_enterTextField setText:textFieldDefaultText];
+        [_enterTextField setPlaceholder:textFieldPlaceholderText];
+        [_enterTextField setKeyboardType:textFieldKeyboardType];
+        [self.view addSubview:_enterTextField];
         
         [self initBaseLayout];
         self.saveHandle=saveHandle;
@@ -178,16 +183,16 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
         
         self.modal=CatDetailViewControllerMoalDatePicker;
         
-        datePicker=[[UIDatePicker alloc] init];
+        _datePicker=[[UIDatePicker alloc] init];
         if (datePickerDefaultDate==nil) {
-            [datePicker setDate:[NSDate date] animated:YES];
+            [_datePicker setDate:[NSDate date] animated:YES];
         }else{
-            [datePicker setDate:datePickerDefaultDate animated:YES];
+            [_datePicker setDate:datePickerDefaultDate animated:YES];
         }
-        [datePicker setDatePickerMode:datePickerMode];
-        datePickerFormatString=dateFormatString;
-        [datePicker setCenter:self.view.center];
-        [self.view addSubview:datePicker];
+        [_datePicker setDatePickerMode:datePickerMode];
+        _datePickerFormatString=dateFormatString;
+        [_datePicker setCenter:self.view.center];
+        [self.view addSubview:_datePicker];
         
         [self initBaseLayout];
         self.saveHandle=saveHandle;
@@ -204,17 +209,17 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
         self.modal=CatDetailViewControllerMoalCityPciker;
         
         NSString *cityPlistPath=[[NSBundle mainBundle] pathForResource:@"ChinaCity" ofType:@"plist"];
-        cityDict=[NSMutableDictionary dictionaryWithContentsOfFile:cityPlistPath];
-        provinceArray=[[NSMutableArray alloc] init];
-        [provinceArray addObjectsFromArray:[cityDict allKeys]];
-        cityArray=[[NSMutableArray alloc] init];
-        [cityArray addObjectsFromArray:[cityDict objectForKey:[provinceArray firstObject]]];
-        cityPicker=[[UIPickerView alloc] init];
-        [cityPicker setCenter:self.view.center];
-        [self.view addSubview:cityPicker];
+        _cityDict=[NSMutableDictionary dictionaryWithContentsOfFile:cityPlistPath];
+        _provinceArray=[[NSMutableArray alloc] init];
+        [_provinceArray addObjectsFromArray:[_cityDict allKeys]];
+        _cityArray=[[NSMutableArray alloc] init];
+        [_cityArray addObjectsFromArray:[_cityDict objectForKey:[_provinceArray firstObject]]];
+        _cityPicker=[[UIPickerView alloc] init];
+        [_cityPicker setCenter:self.view.center];
+        [self.view addSubview:_cityPicker];
         
-        cityPicker.delegate=self;
-        cityPicker.dataSource=self;
+        _cityPicker.delegate=self;
+        _cityPicker.dataSource=self;
         
         [self initBaseLayout];
         self.saveHandle=saveHandle;
@@ -229,10 +234,10 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
         
         self.modal=CatDetailViewControllerMoalTextInput;
         
-        enterTextView=[[UITextView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
-        [self.view addSubview:enterTextView];
+        _enterTextView=[[UITextView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
+        [self.view addSubview:_enterTextView];
         if (text.length!=0) {
-            [enterTextView setText:text];
+            [_enterTextView setText:text];
         }
         
         [self initBaseLayout];
@@ -259,31 +264,40 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
  *  @param action Special action
  */
 -(void)initSaveBarBtnWithAction:(SEL)action{
-    UIBarButtonItem *saveBarBtn=[[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:action];
-    [self.navigationItem setRightBarButtonItem:saveBarBtn animated:YES];
+    _saveBarBtn=[[UIBarButtonItem alloc] initWithTitle:_saveButtonTitle==nil?@"Save":_saveButtonTitle
+                                                                 style:UIBarButtonItemStyleDone
+                                                                target:self
+                                                                action:action];
+    [self.navigationItem setRightBarButtonItem:_saveBarBtn
+                                      animated:YES];
 }
 
 #pragma mark - Action Method
 -(void)detailViewShowOnViewController:(UIViewController *)viewcontroller{
     switch (self.modal) {
         case CatDetailViewControllerMoalDatePicker:{
-            [viewcontroller.navigationController pushViewController:self animated:YES];
+            [viewcontroller.navigationController pushViewController:self
+                                                           animated:YES];
         }
             break;
         case CatDetailViewControllerMoalSingleSection:{
-            [viewcontroller.navigationController pushViewController:self animated:YES];
+            [viewcontroller.navigationController pushViewController:self
+                                                           animated:YES];
         }
             break;
         case CatDetailViewControllerMoalTextFieldEnter:{
-            [viewcontroller.navigationController pushViewController:self animated:YES];
+            [viewcontroller.navigationController pushViewController:self
+                                                           animated:YES];
         }
             break;
         case CatDetailViewControllerMoalCityPciker:{
-            [viewcontroller.navigationController pushViewController:self animated:YES];
+            [viewcontroller.navigationController pushViewController:self
+                                                           animated:YES];
         }
             break;
         case CatDetailViewControllerMoalTextInput:{
-            [viewcontroller.navigationController pushViewController:self animated:YES];
+            [viewcontroller.navigationController pushViewController:self
+                                                           animated:YES];
         }
             break;
         default:
@@ -302,9 +316,12 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
         self.saveConfirmAlertViewMessage=@"Do you confirm this information";
     }
     
-    detailControllerAlertView=[[UIAlertView alloc] initWithTitle:self.saveConfirmAlertViewTitle message:self.saveConfirmAlertViewMessage delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
-    [detailControllerAlertView setTag:CatDetailViewControllerAlertViewModalConfirm];
-    [detailControllerAlertView show];
+    _detailControllerAlertView=[[UIAlertView alloc] initWithTitle:self.saveConfirmAlertViewTitle
+                                                          message:self.saveConfirmAlertViewMessage
+                                                         delegate:self cancelButtonTitle:@"No"
+                                                otherButtonTitles:@"Yes", nil];
+    [_detailControllerAlertView setTag:CatDetailViewControllerAlertViewModalConfirm];
+    [_detailControllerAlertView show];
 }
 
 /**
@@ -317,9 +334,12 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
     if (!self.emptyResultAlertViewMessage) {
         self.emptyResultAlertViewMessage=@"You must confirm information is available";
     }
-    detailControllerAlertView=[[UIAlertView alloc] initWithTitle:self.emptyResultAlertViewTitle message:self.emptyResultAlertViewMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [detailControllerAlertView setTag:CatDetailViewControllerAlertViewModalEmptyResult];
-    [detailControllerAlertView show];
+    _detailControllerAlertView=[[UIAlertView alloc] initWithTitle:self.emptyResultAlertViewTitle
+                                                          message:self.emptyResultAlertViewMessage
+                                                         delegate:self cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+    [_detailControllerAlertView setTag:CatDetailViewControllerAlertViewModalEmptyResult];
+    [_detailControllerAlertView show];
 }
 
 /**
@@ -331,23 +351,23 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
         }
             break;
         case CatDetailViewControllerMoalTextFieldEnter:{
-            self.saveResult=enterTextField.text;
+            self.saveResult=_enterTextField.text;
         }
             break;
         case CatDetailViewControllerMoalDatePicker:{
             NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:datePickerFormatString];
-            self.saveResult=[dateFormatter stringFromDate:datePicker.date];
+            [dateFormatter setDateFormat:_datePickerFormatString];
+            self.saveResult=[dateFormatter stringFromDate:_datePicker.date];
         }
             break;
         case CatDetailViewControllerMoalCityPciker:{
-            NSString *provinceString=[provinceArray objectAtIndex:[cityPicker selectedRowInComponent:0]];
-            NSString *cityString=[cityArray objectAtIndex:[cityPicker selectedRowInComponent:1]];
+            NSString *provinceString=[_provinceArray objectAtIndex:[_cityPicker selectedRowInComponent:0]];
+            NSString *cityString=[_cityArray objectAtIndex:[_cityPicker selectedRowInComponent:1]];
             self.saveResult=[NSString stringWithFormat:@"%@-%@",provinceString,cityString];
         }
             break;
         case CatDetailViewControllerMoalTextInput:{
-            self.saveResult=enterTextView.text;
+            self.saveResult=_enterTextView.text;
         }
             break;
         default:
@@ -388,6 +408,10 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
     }
 }
 
+- (void)setSaveButtonTitle:(NSString *)saveButtonTitle {
+    [_saveBarBtn setTitle:saveButtonTitle];
+}
+
 #pragma mark - UITableViewDelegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -395,9 +419,9 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    [cell.textLabel setText:[sectionsArray objectAtIndex:indexPath.row]];
+    [cell.textLabel setText:[_sectionsArray objectAtIndex:indexPath.row]];
     if (indexPath!=nil) {
-        if ([indexPath isEqual:checkmarkIndexPath]) {
+        if ([indexPath isEqual:_checkmarkIndexPath]) {
             [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
         }else{
             [cell setAccessoryType:UITableViewCellAccessoryNone];
@@ -409,11 +433,11 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return sectionsArray.count;
+    return _sectionsArray.count;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    checkmarkIndexPath=indexPath;
+    _checkmarkIndexPath=indexPath;
     [tableView reloadData];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.saveResult=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
@@ -443,25 +467,25 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
 #pragma mark - UIPickerViewDelegate
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     if (component==0) {
-        return provinceArray.count;
+        return _provinceArray.count;
     } else{
-        return cityArray.count;
+        return _cityArray.count;
     }
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     if (component==0) {
-        return [provinceArray objectAtIndex:row];
+        return [_provinceArray objectAtIndex:row];
     }else{
-        return [cityArray objectAtIndex:row];
+        return [_cityArray objectAtIndex:row];
     }
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     if (component==0) {
-        NSString *provinceName=[provinceArray objectAtIndex:row];
-        [cityArray removeAllObjects];
-        [cityArray addObjectsFromArray:[cityDict objectForKey:provinceName]];
+        NSString *provinceName=[_provinceArray objectAtIndex:row];
+        [_cityArray removeAllObjects];
+        [_cityArray addObjectsFromArray:[_cityDict objectForKey:provinceName]];
         [pickerView reloadComponent:1];
     }
 }

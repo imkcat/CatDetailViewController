@@ -21,6 +21,11 @@
 @property(nonatomic) BOOL allowResultEmpty;
 
 /**
+ *  The title for save button
+ */
+@property (nonatomic, copy) NSString *saveButtonTitle;
+
+/**
  *  The text for save alertview message
  */
 @property(nonatomic ,copy) NSString *saveConfirmAlertViewMessage;
