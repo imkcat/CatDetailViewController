@@ -13,12 +13,12 @@
 /**
  *  A boolean value that the confirm information alertview show(Default is NO)
  */
-@property(nonatomic) BOOL enableConfirmAlertView;
+@property (nonatomic) BOOL enableConfirmAlertView;
 
 /**
  *  A boolean value that the empty information alertview show(Default is NO)
  */
-@property(nonatomic) BOOL allowResultEmpty;
+@property (nonatomic) BOOL allowResultEmpty;
 
 /**
  *  The title for save button
@@ -28,22 +28,32 @@
 /**
  *  The text for save alertview message
  */
-@property(nonatomic ,copy) NSString *saveConfirmAlertViewMessage;
+@property (nonatomic ,copy) NSString *saveConfirmAlertViewMessage;
 
 /**
  *  The text for save alertview title
  */
-@property(nonatomic ,copy) NSString *saveConfirmAlertViewTitle;
+@property (nonatomic ,copy) NSString *saveConfirmAlertViewTitle;
 
 /**
  *  The text for empty alertview message
  */
-@property(nonatomic ,copy) NSString *emptyResultAlertViewMessage;
+@property (nonatomic ,copy) NSString *emptyResultAlertViewMessage;
 
 /**
  *  The text for empty alertview title
  */
-@property(nonatomic ,copy) NSString *emptyResultAlertViewTitle;
+@property (nonatomic ,copy) NSString *emptyResultAlertViewTitle;
+
+/**
+ *  The text for alertview cancel button title
+ */
+@property (nonatomic, copy) NSString *alertViewCancelButtonTitle;
+
+/**
+ *  The text for alertview confirm button title
+ */
+@property (nonatomic, copy) NSString *alertViewConfirmButtonTitle;
 
 /**
  *  Return a new detailViewController base on single section modal

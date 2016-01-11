@@ -16,6 +16,7 @@
 		D0931E931B2A8EF500EFC01A /* CatDetailViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0931E921B2A8EF500EFC01A /* CatDetailViewControllerTests.m */; };
 		D0931EA21B2A8F8100EFC01A /* CatDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0931EA11B2A8F8100EFC01A /* CatDetailViewController.m */; };
 		D0931EA51B2A905000EFC01A /* MainViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0931EA41B2A905000EFC01A /* MainViewTableViewCell.m */; };
+		D09FDAB71C439A0B00620AC2 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D09FDAB61C439A0B00620AC2 /* DetailViewController.m */; };
 		D0F067BB1BF240690002A0E5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0F067BA1BF240690002A0E5 /* Default-568h@2x.png */; };
 		D0FCE0481B2ABC6E00D5FE51 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0FCE0471B2ABC6E00D5FE51 /* UIKit.framework */; };
 /* End PBXBuildFile section */
@@ -48,6 +49,8 @@
 		D0931EA11B2A8F8100EFC01A /* CatDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CatDetailViewController.m; path = CatDetailViewController/CatDetailViewController.m; sourceTree = "<group>"; };
 		D0931EA31B2A905000EFC01A /* MainViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewTableViewCell.h; sourceTree = "<group>"; };
 		D0931EA41B2A905000EFC01A /* MainViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewTableViewCell.m; sourceTree = "<group>"; };
+		D09FDAB51C439A0B00620AC2 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		D09FDAB61C439A0B00620AC2 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		D0F067BA1BF240690002A0E5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D0FCE0471B2ABC6E00D5FE51 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -97,6 +100,8 @@
 				D0931E9C1B2A8EFB00EFC01A /* CatDetailViewController */,
 				D0931E7A1B2A8EF500EFC01A /* AppDelegate.h */,
 				D0931E7B1B2A8EF500EFC01A /* AppDelegate.m */,
+				D09FDAB51C439A0B00620AC2 /* DetailViewController.h */,
+				D09FDAB61C439A0B00620AC2 /* DetailViewController.m */,
 				D0931E7D1B2A8EF500EFC01A /* ViewController.h */,
 				D0931E7E1B2A8EF500EFC01A /* ViewController.m */,
 				D0931EA31B2A905000EFC01A /* MainViewTableViewCell.h */,
@@ -258,6 +263,7 @@
 				D0931EA51B2A905000EFC01A /* MainViewTableViewCell.m in Sources */,
 				D0931E7C1B2A8EF500EFC01A /* AppDelegate.m in Sources */,
 				D0931E791B2A8EF500EFC01A /* main.m in Sources */,
+				D09FDAB71C439A0B00620AC2 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

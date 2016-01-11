@@ -1,6 +1,6 @@
 //
 //  ViewController.m
-//  CatDetailViewController
+//  DetailViewController
 //
 //  Created by K-cat on 15/6/12.
 //  Copyright (c) 2015年 K-cat. All rights reserved.
@@ -8,11 +8,9 @@
 
 #import "ViewController.h"
 #import "MainViewTableViewCell.h"
-#import "CatDetailViewController.h"
+#import "DetailViewController.h"
 
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource>{
-    CatDetailViewController *detailView1;
-}
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
 
@@ -56,49 +54,49 @@
         case 0:{
             switch (indexPath.row) {
                 case 0:{
-                    CatDetailViewController *detailView=[[CatDetailViewController alloc] initSingleSectionViewWithTitle:@"Select Color"
-                                                                                                               sections:@[@"Red",@"Blue"]
-                                                                                                     defaultSectionText:cell.detailTextLabel.text
-                                                                                                             saveHandle:^(NSString *saveResult) {
-                                                                                                                 [cell.detailTextLabel setText:saveResult];
-                    }];
+                    DetailViewController *detailView=[[DetailViewController alloc] initSingleSectionViewWithTitle:@"Select Color"
+                                                                                                         sections:@[@"Red",@"Blue"]
+                                                                                               defaultSectionText:cell.detailTextLabel.text
+                                                                                                       saveHandle:^(NSString *saveResult) {
+                                                                                                           [cell.detailTextLabel setText:saveResult];
+                                                                                                       }];
                     [detailView detailViewShowOnViewController:self];
                 }
                     break;
                 case 1:{
-                    CatDetailViewController *detailView=[[CatDetailViewController alloc] initTextFieldEnterViewWithTitle:@"Enter Something"
-                                                                                                    textFieldDefaultText:cell.detailTextLabel.text
-                                                                                                textFieldPlaceholderText:nil
-                                                                                                   textFieldKeyboardType:UIKeyboardTypeDefault
-                                                                                                              saveHandle:^(NSString *saveResult) {
-                                                                                                                  [cell.detailTextLabel setText:saveResult];
-                    }];
+                    DetailViewController *detailView=[[DetailViewController alloc] initTextFieldEnterViewWithTitle:@"Enter Something"
+                                                                                              textFieldDefaultText:cell.detailTextLabel.text
+                                                                                          textFieldPlaceholderText:nil
+                                                                                             textFieldKeyboardType:UIKeyboardTypeDefault
+                                                                                                        saveHandle:^(NSString *saveResult) {
+                                                                                                            [cell.detailTextLabel setText:saveResult];
+                                                                                                        }];
                     [detailView detailViewShowOnViewController:self];
                 }
                     break;
                 case 2:{
                     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
                     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-                    CatDetailViewController *detailView=[[CatDetailViewController alloc] initDatePickerViewWithTitle:@"Select Date"
-                                                                                               datePickerDefaultDate:[dateFormatter dateFromString:cell.detailTextLabel.text]
-                                                                                                    dateFormatString:@"yyyy-MM-dd"
-                                                                                                      datePickerMode:UIDatePickerModeDate
-                                                                                                          saveHandle:^(NSString *saveResult) {
-                                                                                                              [cell.detailTextLabel setText:saveResult];
-                    }];
+                    DetailViewController *detailView=[[DetailViewController alloc] initDatePickerViewWithTitle:@"Select Date"
+                                                                                         datePickerDefaultDate:[dateFormatter dateFromString:cell.detailTextLabel.text]
+                                                                                              dateFormatString:@"yyyy-MM-dd"
+                                                                                                datePickerMode:UIDatePickerModeDate
+                                                                                                    saveHandle:^(NSString *saveResult) {
+                                                                                                        [cell.detailTextLabel setText:saveResult];
+                                                                                                    }];
                     [detailView detailViewShowOnViewController:self];
                 }
                     break;
                 case 3:{
-                    CatDetailViewController *detailView=[[CatDetailViewController alloc] initChinaCityPickerViewWithTitle:@"Select city"
-                                                                                                               saveHandle:^(NSString *saveResult) {
-                                                                                                                   [cell.detailTextLabel setText:saveResult];
-                    }];
+                    DetailViewController *detailView=[[DetailViewController alloc] initChinaCityPickerViewWithTitle:@"Select city"
+                                                                                                         saveHandle:^(NSString *saveResult) {
+                                                                                                             [cell.detailTextLabel setText:saveResult];
+                                                                                                         }];
                     [detailView detailViewShowOnViewController:self];
                 }
                     break;
                 case 4:{
-                    CatDetailViewController *detailView=[[CatDetailViewController alloc] initTextInputViewWithTitle:@"Enter Something" text:cell.detailTextLabel.text saveHandle:^(NSString *saveResult) {
+                    DetailViewController *detailView=[[DetailViewController alloc] initTextInputViewWithTitle:@"Enter Something" text:cell.detailTextLabel.text saveHandle:^(NSString *saveResult) {
                         [cell.detailTextLabel setText:saveResult];
                     }];
                     [detailView detailViewShowOnViewController:self];

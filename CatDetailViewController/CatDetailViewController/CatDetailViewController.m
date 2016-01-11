@@ -136,6 +136,7 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
             
             if ([sections containsObject:defaultSectionText]) {
                 _checkmarkIndexPath=[NSIndexPath indexPathForRow:[sections indexOfObject:defaultSectionText] inSection:0];
+                _saveResult = defaultSectionText;
             }else{
                 _checkmarkIndexPath=nil;
             }
@@ -264,12 +265,16 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
  *  @param action Special action
  */
 -(void)initSaveBarBtnWithAction:(SEL)action{
-    _saveBarBtn=[[UIBarButtonItem alloc] initWithTitle:_saveButtonTitle==nil?@"Save":_saveButtonTitle
-                                                                 style:UIBarButtonItemStyleDone
-                                                                target:self
-                                                                action:action];
-    [self.navigationItem setRightBarButtonItem:_saveBarBtn
-                                      animated:YES];
+    if (!_saveBarBtn) {
+        _saveBarBtn=[[UIBarButtonItem alloc] initWithTitle:_saveButtonTitle==nil?@"Save":_saveButtonTitle
+                                                     style:UIBarButtonItemStyleDone
+                                                    target:self
+                                                    action:action];
+        [self.navigationItem setRightBarButtonItem:_saveBarBtn
+                                          animated:YES];
+    } else {
+        [_saveBarBtn setAction:action];
+    }
 }
 
 #pragma mark - Action Method
@@ -318,8 +323,9 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
     
     _detailControllerAlertView=[[UIAlertView alloc] initWithTitle:self.saveConfirmAlertViewTitle
                                                           message:self.saveConfirmAlertViewMessage
-                                                         delegate:self cancelButtonTitle:@"No"
-                                                otherButtonTitles:@"Yes", nil];
+                                                         delegate:self
+                                                cancelButtonTitle:_alertViewCancelButtonTitle
+                                                otherButtonTitles:_alertViewConfirmButtonTitle, nil];
     [_detailControllerAlertView setTag:CatDetailViewControllerAlertViewModalConfirm];
     [_detailControllerAlertView show];
 }
@@ -336,7 +342,8 @@ static NSString *const cellIdentifier=@"SectionsTableViewCellIdentifier";
     }
     _detailControllerAlertView=[[UIAlertView alloc] initWithTitle:self.emptyResultAlertViewTitle
                                                           message:self.emptyResultAlertViewMessage
-                                                         delegate:self cancelButtonTitle:@"OK"
+                                                         delegate:self
+                                                cancelButtonTitle:_alertViewConfirmButtonTitle
                                                 otherButtonTitles:nil];
     [_detailControllerAlertView setTag:CatDetailViewControllerAlertViewModalEmptyResult];
     [_detailControllerAlertView show];
